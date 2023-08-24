@@ -10,6 +10,14 @@ All the data should be entered manually, but since it's posted, records will be 
 
 With all that said, let's code! 💻 🚀
 
+## Key Features
+- New Transaction section (Deopsit, Withdraw, Transfer)
+- New Account section
+- Account Summary
+- Transactions list
+- Filter by account, category, transaction type (bonus)
+- Notification animation when a new transaction or account is created
+
 ## Set up
 
 - `npm install` to install dependencies
@@ -40,21 +48,6 @@ frontend
     |    --- index.js (event listeners, DOM manipulation)
     --- index.html (HTML stuff) - no introductions needed
 ```
-
-## How to split the project (in case of team mates)
-
-> This is just a recommendation!
-
-- Member 1 (Hard):
-  - New Transaction section
-- Member 2 (Moderate):
-  - New Account section
-  - Account Summary
-- Member 3 (Easy):
-  - Transactions list
-  - Filter by account, category, transaction type (bonus)
-- Bonus:
-  - Notification animation when a new transaction or account is created
 
 ## API Endpoints
 
