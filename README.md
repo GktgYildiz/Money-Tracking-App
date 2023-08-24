@@ -104,7 +104,7 @@ This design is just a reference, it doesn't mean that your project should looks 
 
 ### SPA Example
 
-![Screenshot](./imgs/spa.png)
+![Screenshot](./imgs/screenshot.png)
 
 ### Web App Example
 
