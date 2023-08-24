@@ -1,0 +1,46 @@
+# Get all accounts
+
+# GET http://localhost:3000/accounts
+
+# Create new account 
+
+# POST http://localhost:3000/accounts
+# content-type: application/json
+
+# {
+#     "newAccount":"Zoey"
+# }
+
+# Get all categories
+
+# GET http://localhost:3000/categories
+
+# Create new category 
+
+# POST http://localhost:3000/categories
+# content-type: application/json
+
+# {
+#     "newCategory":"food"
+# }
+
+# Get all transactions
+
+# GET http://localhost:3000/transactions
+
+# Create new transaction
+
+# POST http://localhost:3000/transactions
+# content-type: application/json
+
+# {
+#   "newTransaction":{
+#     "accountId":null, 
+#     "accountIdFrom":1, 
+#     "accountIdTo":2,
+#     "type":"Transfer", 
+#     "amount":100, 
+#     "categoryId":1,
+#     "description":"salary april"
+#   }
+# }

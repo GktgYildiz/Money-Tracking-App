@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>myTrakr</title>
+    <!-- jQuery link -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+      defer
+    ></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./css/index.css" />
+  </head>
+  <body>
+    myTrakr
+    <main>
+      <form action="">
+        New Account:
+        <input type="text" />
+        <button>Add new account</button>
+      </form>
+      <form action="">
+        New Transaction: Deposit
+        <input type="radio" />
+        Withdraw
+        <input type="radio" />
+        Transfer
+        <input type="radio" />
+        Account:
+        <select></select>
+
+        From:
+        <select></select>
+
+        To:
+        <select></select>
+        Category:
+        <select></select>
+        <input type="text" />
+        <button type="button">Add new category</button>
+
+        Description
+        <input type="text" />
+
+        Amount:
+        <input type="number" />
+
+        <button>Add transaction</button>
+      </form>
+
+      Account summary
+      <ul></ul>
+      Filter by account:
+      <select></select>
+      <table>
+        <tr>
+          <th>Id</th>
+          <th>Username</th>
+          <th>Transaction Type</th>
+          <th>Category</th>
+          <th>Description</th>
+          <th>Amount</th>
+          <th>From</th>
+          <th>To</th>
+        </tr>
+      </table>
+    </main>
+    <script src="./js/helpers/Account.js" defer></script>
+    <script src="./js/helpers/Category.js" defer></script>
+    <script src="./js/helpers/Common.js" defer></script>
+    <script src="./js/helpers/Transaction.js" defer></script>
+    <script src="./js/index.js" defer></script>
+  </body>
+</html>
