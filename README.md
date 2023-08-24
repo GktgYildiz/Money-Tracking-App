@@ -11,18 +11,24 @@ All the data should be entered manually, but since it's posted, records will be 
 With all that said, let's code! 💻 🚀
 
 ## Key Features
-- New Transaction section (Deopsit, Withdraw, Transfer)
-- New Account section
-- Account Summary
-- Transactions list
-- Filter by account, category, transaction type (bonus)
-- Notification animation when a new transaction or account is created
+
+-   New Transaction section (Deopsit, Withdraw, Transfer)
+-   New Account section
+-   Account Summary
+-   Transactions list
+
+## Bonus
+
+-   Responsive Design
+-   Filter by account, category, transaction type
+-   Notification animation when a new transaction or account is created
+-   Create a login page with hard coded users for better User Experience
 
 ## Set up
 
-- `npm install` to install dependencies
-- `npm start` to start the server
-- Run Live Server to open `index.html` on the browser.
+-   `npm install` to install dependencies
+-   `npm start` to start the server
+-   Run Live Server to open `index.html` on the browser.
 
 ## File Structure
 
@@ -54,19 +60,19 @@ frontend
 All the requests should have the domain of `http://localhost:3000/`.
 `http://localhost:3000/accounts`
 
-- GET `/accounts`: get all the accounts
-- POST `/accounts`: saves a new account
-  expects:
+-   GET `/accounts`: get all the accounts
+-   POST `/accounts`: saves a new account
+    expects:
 
 ```js
 {
-  newAccount: "";
+    newAccount: "";
 }
 ```
 
-- GET `/transactions`: get all the transactions from all accounts
-- POST `/transactions`: saves a new transaction
-  expects:
+-   GET `/transactions`: get all the transactions from all accounts
+-   POST `/transactions`: saves a new transaction
+    expects:
 
 ```js
 {
@@ -82,9 +88,9 @@ All the requests should have the domain of `http://localhost:3000/`.
 }
 ```
 
-- GET `/categories`: get all the categories
-- POST `/categories`: saves a new category
-  expects:
+-   GET `/categories`: get all the categories
+-   POST `/categories`: saves a new category
+    expects:
 
 ```js
 {
@@ -92,8 +98,14 @@ All the requests should have the domain of `http://localhost:3000/`.
 }
 ```
 
-## Screenshot
+## UI Design
 
 This design is just a reference, it doesn't mean that your project should looks like the same.
 
-![Screenshot](./imgs/screenshot.png)
+### SPA Example
+
+![Screenshot](./imgs/spa.png)
+
+### Web App Example
+
+![Screenshot](./imgs/home.jpg)![Screenshot](./imgs/page2.jpg)
