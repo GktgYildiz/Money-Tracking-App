@@ -23,8 +23,12 @@ $ npm run dev
 
 ## Coding Guideline
 
-- Styling must be done with TailwindCSS.
-  - https://tailwindcss.com/
-- Prefix for id attribute must be put to avoid id conflicts.
-  - e.g. sec-new-account => id="na-XXX-XXX"
-- If you want add or change styles outside of section, Let us know.
+- Styling
+  - Styling must be done with TailwindCSS.
+    - https://tailwindcss.com/
+  - Prefix for id attribute must be put to avoid id conflicts.
+    - e.g. sec-new-account => id="na-XXX-XXX"
+  - If you want add or change styles outside of section, Let us know.
+- Git
+  - You must create branch from main and make PR to merge it into main.
+  - Branch name would be having "feat/" or "feat-" etc... prefix.
