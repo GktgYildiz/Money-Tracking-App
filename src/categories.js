@@ -1,6 +1,6 @@
 let categories = [{ id: 1, name: "salary" }];
 
-export const getCategories = () => {
+export const fetchCategories = () => {
   return categories;
 };
 
@@ -17,4 +17,4 @@ export const validateCategory = (categoryId) => {
   return categories.find((category) => category.id === categoryId);
 };
 
-export default { getCategories, addCategory, validateCategory };
+export default { fetchCategories, addCategory, validateCategory };

@@ -1,10 +1,10 @@
-import { getAccounts, validateAccount } from "./accounts.js";
+import { fetchAccounts, validateAccount } from "./accounts.js";
 import { validateCategory } from "./categories.js";
 
 let transactionCounter = 0;
 export const addTransaction = (transaction) => {
   const newTransactions = [];
-  const accounts = getAccounts();
+  const accounts = fetchAccounts();
   accounts.forEach((account) => {
     if (
       account.id === transaction.accountIdFrom ||
@@ -12,15 +12,7 @@ export const addTransaction = (transaction) => {
       account.id === transaction.accountId
     ) {
       transactionCounter++;
-      const {
-        accountId,
-        accountIdFrom,
-        accountIdTo,
-        type,
-        amount,
-        categoryId,
-        description,
-      } = transaction;
+      const { accountId, accountIdFrom, accountIdTo, type, amount, categoryId, description } = transaction;
       let newTransaction = {
         accountId,
         accountIdFrom,
@@ -45,7 +37,7 @@ export const addTransaction = (transaction) => {
 };
 
 export const getAllTransactions = () => {
-  const accounts = getAccounts();
+  const accounts = fetchAccounts();
   let allTransactions = [];
   accounts.forEach((account) => {
     allTransactions = [...allTransactions, account.transactions];
@@ -73,11 +65,7 @@ export const validateTransaction = (transaction) => {
   ) {
     return "Invalid account id.";
   }
-  if (
-    !transaction.amount ||
-    transaction.amount <= 0 ||
-    !Number(transaction.amount)
-  )
+  if (!transaction.amount || transaction.amount <= 0 || !Number(transaction.amount))
     return "Invalid transaction amount";
   if (!transaction.categoryId || !validateCategory(transaction.categoryId)) {
     return "Invalid category";

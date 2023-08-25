@@ -1,13 +1,9 @@
 //create express server
 import express from "express";
 import cors from "cors";
-import { addAccount, getAccounts } from "./src/accounts.js";
-import {
-  addTransaction,
-  getAllTransactions,
-  validateTransaction,
-} from "./src/transactions.js";
-import { addCategory, getCategories } from "./src/categories.js";
+import { addAccount, fetchAccounts } from "./src/accounts.js";
+import { addTransaction, getAllTransactions, validateTransaction } from "./src/transactions.js";
+import { addCategory, fetchCategories } from "./src/categories.js";
 
 const app = express();
 app.use(cors());
@@ -20,7 +16,7 @@ app.listen(port, () => {
 
 // read accounts
 app.get("/accounts", (req, res) => {
-  const accounts = getAccounts();
+  const accounts = fetchAccounts();
   res.status(200).json(accounts);
 });
 
@@ -58,7 +54,7 @@ app.post("/transactions", (req, res) => {
 
 // read categories
 app.get("/categories", (req, res) => {
-  const categories = getCategories();
+  const categories = fetchCategories();
   res.status(200).json(categories);
 });
 

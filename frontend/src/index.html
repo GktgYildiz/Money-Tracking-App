@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Banking App</title>
+    <!-- jQuery link -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" defer></script>
+    <!-- JS *Sequence matters* -->
+    <script type="module" src="./js/common.js" defer></script>
+    <script type="module" src="./js/index.js" defer></script>
+    <script type="module" src="./js/components/Account.js" defer></script>
+    <script type="module" src="./js/components/Transaction.js" defer></script>
+    <script type="module" src="./js/components/TransactionHistory.js" defer></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body class="bg-slate-100 text-[#3F4A5A]">
+    <header class="flex justify-center items-center bg-green-800">
+      <div class="py-4 text-2xl font-extrabold text-white">My Tracker</div>
+    </header>
+    <div class="container mx-auto h-screen grid grid-cols-1 mt-3">
+      <main class="container mx-auto h-screen grid grid-cols-1">
+        <!-- New Account | id prefix: 'na-' -->
+        <section id="sec-new-account">
+          <div class="space-y-1">
+            <h1 class="text-xl font-extrabold">Create your account</h1>
+            <form class="flex flex-wrap justify-start items-center gap-4" id="na-account-form">
+              <label class="font-bold" for="newAccount">New Account:</label>
+              <input class="p-3 rounded-lg" type="text" id="na-new-account" name="newAccount" placeholder="Mario" />
+              <button class="bg-green-600 p-3 rounded-lg font-semibold text-white" type="submit">Create</button>
+            </form>
+          </div>
+          <div class="p-2 font-bold text-green-600" id="na-result"></div>
+        </section>
+
+        <!-- Transaction | id prefix: 't-' -->
+        <section id="sec-transaction">
+          <h1>Transaction</h1>
+          <!-- <form action="">
+          Transaction: Deposit
+          <input type="radio" />
+          Withdraw
+          <input type="radio" />
+          Transfer
+          <input type="radio" />
+          Account:
+          <select></select>
+
+          From:
+          <select></select>
+
+          To:
+          <select></select>
+          Category:
+          <select></select>
+          <input type="text" />
+          <button type="button">Add new category</button>
+
+          Description
+          <input type="text" />
+
+          Amount:
+          <input type="number" />
+
+          <button>Add transaction</button>
+        </form> -->
+        </section>
+
+        <!-- Accounts Summary | id prefix: 'as-' -->
+        <section id="sec-account-summary">
+          <h1>Account Summary</h1>
+          <!-- <table>
+          <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Balance</th>
+          </tr>
+        </table> -->
+        </section>
+
+        <!-- Transaction History | id prefix: 'th-' -->
+        <section id="sec-transaction-history">
+          <h1>Transaction History</h1>
+          <!-- <ul></ul>
+        Filter by account:
+        <select></select>
+        <table>
+          <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Transaction Type</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Amount</th>
+            <th>From</th>
+            <th>To</th>
+          </tr>
+        </table> -->
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

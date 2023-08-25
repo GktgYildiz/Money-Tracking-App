@@ -1,6 +1,6 @@
 const accounts = [];
 
-export const getAccounts = () => {
+export const fetchAccounts = () => {
   return accounts;
 };
 
@@ -14,4 +14,4 @@ export const validateAccount = (accountId) => {
   return accounts.find((acc) => acc.id === accountId);
 };
 
-export default { getAccounts, addAccount, validateAccount };
+export default { fetchAccounts, addAccount, validateAccount };
