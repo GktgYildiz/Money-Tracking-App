@@ -37,35 +37,48 @@
 
         <!-- Transaction | id prefix: 't-' -->
         <section id="sec-transaction">
-          <h1>Transaction</h1>
-          <!-- <form action="">
-          Transaction: Deposit
-          <input type="radio" />
-          Withdraw
-          <input type="radio" />
-          Transfer
-          <input type="radio" />
-          Account:
-          <select></select>
+          <h1 class="text-xl font-extrabold text-[#262634] tracking-wider">New Transaction</h1>
+          <form action="">
+            <div class="text-l font-medium">Transaction:</div>
+            <div class="flex flex-wrap justify-start items-center gap-4" id="t-method">
+              <div class="flex gap-2">
+                <p>Deposit</p>
+                <input type="radio" id="t-deposit-btn" />
+              </div>
+              <div class="flex gap-2">
+                <p>Withdraw</p>
+                <input type="radio" id="t-withdraw-btn" />
+              </div>
 
-          From:
-          <select></select>
+              <div class="flex gap-2">
+                <p>Transfer</p>
+                <input type="radio" id="t-transfer-btn" />
+              </div>
+            </div>
 
-          To:
-          <select></select>
-          Category:
-          <select></select>
-          <input type="text" />
-          <button type="button">Add new category</button>
+            <div class="text-l font-medium">Account:</div>
+            <div id="t-choose-accounts">
+              <div>
+                <p>From:</p>
+                <select class="w-40 h-8 rounded-md"></select>
+              </div>
+              <p>To:</p>
+              <select></select>
+            </div>
 
-          Description
-          <input type="text" />
+            Category:
+            <select></select>
+            <input type="text" />
+            <button type="button">Add new category</button>
 
-          Amount:
-          <input type="number" />
+            Description
+            <input type="text" />
 
-          <button>Add transaction</button>
-        </form> -->
+            Amount:
+            <input type="number" />
+
+            <button>Add transaction</button>
+          </form>
         </section>
 
         <!-- Accounts Summary | id prefix: 'as-' -->
