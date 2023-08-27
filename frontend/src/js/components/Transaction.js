@@ -54,36 +54,96 @@ $(document).ready(async function () {
     //======================
     // Create new category
     //======================
+
     $("#t-new-category-form").submit(async function (event) {
       event.preventDefault();
-      alert("New category");
-      const categoryPayload = { newCategory: $("#t-new-category").val() };
-      console.log(categoryPayload);
+      const addNewCategory = { newCategory: $("#t-new-category").val() };
       try {
-        const category = await apiClient.createCategory(categoryPayload);
-        $("#na-result").text("Your category created!: " + JSON.stringify(category));
-        $("#t-new-category").val(null); // Reset input
+        const category = await apiClient.createCategory(addNewCategory);
+
+        // add new category to dropdown
+        const selectCategory = $("#t-category-dropdown");
+        const categoryOption = $("<option></option>").val(category.id).text(category.name);
+        selectCategory.append(categoryOption);
+
+        // make the new category as selected
+        categoryOption.prop("selected", true);
+
+        const correctIcon = "./images/svg/correctCategory.svg";
+        $("#t-new-category-icon").attr("src", correctIcon);
+        $("#t-new-category").val(null);
       } catch (error) {
-        $("#na-result").text("An error occurred: " + error.message);
+        const errorIcon = "./images/svg/errorCategory.svg";
+        $("#t-new-category-icon").attr("src", errorIcon);
       }
     });
-    // $("#t-new-category-form").submit(async function (event) {
-    //   event.preventDefault();
-    //   const addNewCategory = { newCategory: $("#t-new-category").val() };
-    //   try {
-    //     const category = await apiClient.addCategory(addNewCategory);
-    //     $("#na-result").text("Your account created!: " + JSON.stringify(category));
 
-    //     var correctIcon = "./images/svg/correctCategory.svg";
-    //     $("#t-new-category-icon").attr("src", correctIcon);
-    //     $("#t-new-category").val(null); // Reset input
-    //   } catch (error) {
-    //     $("#na-result").text("error!: " + JSON.stringify(category));
+    //==============================
+    // Amount formatters
+    //==============================
 
-    //     var errorIcon = "./images/svg/errorCategory.svg";
-    //     $("#t-new-category-icon").attr("src", errorIcon);
-    //   }
-    // });
+    $("#t-amound-input").on({
+      keyup: function () {
+        formatCurrency($(this));
+        console.log($(this).val());
+      },
+      shadow: function () {
+        formatCurrency($(this), "shadow");
+      },
+    });
+
+    function formatNumber(n) {
+      return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    function formatCurrency(input, shadow) {
+      // put $ sign in front of nubmer
+      const input_val = input.val();
+
+      if (input_val === "") {
+        return;
+      }
+      const original_len = input_val.length;
+      const caret_pos = input.prop("selectionStart");
+
+      // check for decimal
+      if (input_val.indexOf(".") >= 0) {
+        const decimal_pos = input_val.indexOf(".");
+
+        const left_side = input_val.substring(0, decimal_pos);
+        const right_side = input_val.substring(decimal_pos);
+
+        left_side = formatNumber(left_side);
+        right_side = formatNumber(right_side);
+        if (shadow === "shadow") {
+          right_side += "00";
+        }
+
+        // Limit decimal to only 2 digits
+        right_side = right_side.substring(0, 2);
+
+        // join number by .
+        input_val = "$ " + left_side + "." + right_side;
+      } else {
+        input_val = formatNumber(input_val);
+        input_val = "$ " + input_val;
+
+        // final formatting
+        if (shadow === "shadow") {
+          input_val += ".00";
+        }
+      }
+
+      // send updated string to input
+      input.val(input_val);
+
+      // put caret back in the right position
+      const updated_len = input_val.length;
+      caret_pos = updated_len - original_len + caret_pos;
+      input[0].setSelectionRange(caret_pos, caret_pos);
+    }
+
+    //===============PERSONEL NOTE==========Dont forget to convert amount to integer, remove $ sign from input
   } catch (err) {
     console.error(err);
   }
