@@ -11,6 +11,7 @@ $(document).ready(async function () {
       apiClient.fetchTransactions(),
     ]);
     // console.log(fetchedCategories, fetchedAccounts, fetchedTransactions);
+    console.log(fetchedTransactions);
 
     // ==========================
     // Transaction
