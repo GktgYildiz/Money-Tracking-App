@@ -78,13 +78,13 @@
 
                 <form class="flex flex-col items-center" id="t-new-category-form">
                   <input
-                    class="p-3 rounded-lg"
+                    class="p-3 rounded-lg w-40"
                     type="text"
                     id="t-new-category"
                     name="newCategory"
                     placeholder="New Category"
                   />
-                  <button class="bg-green-600 p-3 rounded-lg font-semibold text-white my-2" type="submit">
+                  <button class="bg-green-600 p-1 rounded-lg text-white my-2 w-40 h-8 text-base" type="submit">
                     Add new category
                   </button>
                 </form>
@@ -93,7 +93,12 @@
 
             <div id="t-add-description">
               <p>Description</p>
-              <input class="w-40 h-8 rounded-md" type="text" />
+              <textarea
+                id="t-description-textarea"
+                rows="4"
+                class="w-40 h-8 rounded-md text-xs"
+                placeholder="Write your description here..."
+              ></textarea>
             </div>
 
             <div id="t-add-amount">

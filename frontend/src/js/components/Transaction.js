@@ -11,8 +11,6 @@ $(document).ready(async function () {
       apiClient.fetchTransactions(),
     ]);
     // console.log(fetchedCategories, fetchedAccounts, fetchedTransactions);
-    // console.log(fetchedAccounts);
-    console.log(fetchedCategories);
 
     // ==========================
     // Transaction
@@ -69,11 +67,11 @@ $(document).ready(async function () {
         // make the new category as selected
         categoryOption.prop("selected", true);
 
-        const correctIcon = "./images/svg/correctCategory.svg";
+        var correctIcon = "./images/svg/correctCategory.svg";
         $("#t-new-category-icon").attr("src", correctIcon);
         $("#t-new-category").val(null);
       } catch (error) {
-        const errorIcon = "./images/svg/errorCategory.svg";
+        var errorIcon = "./images/svg/errorCategory.svg";
         $("#t-new-category-icon").attr("src", errorIcon);
       }
     });
@@ -98,20 +96,20 @@ $(document).ready(async function () {
 
     function formatCurrency(input, shadow) {
       // put $ sign in front of nubmer
-      const input_val = input.val();
+      var input_val = input.val();
 
       if (input_val === "") {
         return;
       }
-      const original_len = input_val.length;
-      const caret_pos = input.prop("selectionStart");
+      var original_len = input_val.length;
+      var caret_pos = input.prop("selectionStart");
 
       // check for decimal
       if (input_val.indexOf(".") >= 0) {
-        const decimal_pos = input_val.indexOf(".");
+        var decimal_pos = input_val.indexOf(".");
 
-        const left_side = input_val.substring(0, decimal_pos);
-        const right_side = input_val.substring(decimal_pos);
+        var left_side = input_val.substring(0, decimal_pos);
+        var right_side = input_val.substring(decimal_pos);
 
         left_side = formatNumber(left_side);
         right_side = formatNumber(right_side);
@@ -138,7 +136,7 @@ $(document).ready(async function () {
       input.val(input_val);
 
       // put caret back in the right position
-      const updated_len = input_val.length;
+      var updated_len = input_val.length;
       caret_pos = updated_len - original_len + caret_pos;
       input[0].setSelectionRange(caret_pos, caret_pos);
     }
