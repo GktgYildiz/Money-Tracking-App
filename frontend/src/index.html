@@ -43,16 +43,15 @@
           <div class="flex flex-wrap justify-start items-center gap-4" id="t-method">
             <div class="flex gap-2">
               <p>Deposit</p>
-              <input type="radio" id="t-deposit-btn" />
+              <input name="transaction" type="radio" id="t-deposit-btn" value="Deposit" />
             </div>
             <div class="flex gap-2">
               <p>Withdraw</p>
-              <input type="radio" id="t-withdraw-btn" />
+              <input name="transaction" type="radio" id="t-withdraw-btn" value="Withdraw" />
             </div>
-
             <div class="flex gap-2">
               <p>Transfer</p>
-              <input type="radio" id="t-transfer-btn" />
+              <input name="transaction" type="radio" id="t-transfer-btn" value="Transfer" />
             </div>
           </div>
 
@@ -95,9 +94,10 @@
               <p>Description</p>
               <textarea
                 id="t-description-textarea"
-                rows="4"
-                class="w-40 h-8 rounded-md text-xs"
+                rows="10"
+                class="w-40 rounded-md text-xs resize-none"
                 placeholder="Write your description here..."
+                maxlength="240"
               ></textarea>
             </div>
 

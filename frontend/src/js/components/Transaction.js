@@ -141,7 +141,41 @@ $(document).ready(async function () {
       input[0].setSelectionRange(caret_pos, caret_pos);
     }
 
-    //===============PERSONEL NOTE==========Dont forget to convert amount to integer, remove $ sign from input
+    $("#t-transfer").on("click", async function () {
+      // Get input values
+      const transactionType = $("input[name='transaction']:checked").val();
+      const fromAccountId = parseInt($("#t-desired-account").val(), 10);
+      const toAccountId = parseInt($("#t-target-account").val(), 10);
+      const categoryId = parseInt($("#t-category-dropdown").val(), 10);
+      const description = $("#t-description-textarea").val();
+      const amount = parseFloat(
+        $("#t-amound-input")
+          .val()
+          .replace(/[^\d.]/g, "")
+      );
+
+      const transactionPayload = {
+        newTransaction: {
+          type: transactionType,
+          accountIdFrom: fromAccountId,
+          accountIdTo: toAccountId,
+          categoryId: categoryId,
+          description: description,
+          amount: amount,
+        },
+      };
+      try {
+        const createdTransaction = await apiClient.createTransaction(transactionPayload);
+        // Handle successful response, maybe show a success message.
+        console.log("Transaction created:", createdTransaction);
+      } catch (error) {
+        // Handle error, show an error message to the user.
+        console.error("Transaction creation failed:", error);
+      }
+      //===============PERSONEL NOTE==========
+      // put error message to validation result fail
+      //put confirm message to validation result success
+    });
   } catch (err) {
     console.error(err);
   }
