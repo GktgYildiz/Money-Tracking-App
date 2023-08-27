@@ -58,26 +58,36 @@
 
             <div class="text-l font-medium">Account:</div>
             <div id="t-container" class="flex flex-wrap gap-4">
-              <div id="t-choose-base">
+              <div id="t-choose-account">
                 <p>From:</p>
-                <select class="w-40 h-8 rounded-md"></select>
+                <select name="base-account" id="t-desired-account" class="w-40 h-8 rounded-md"></select>
               </div>
 
               <div id="t-choose-target">
                 <p>To:</p>
-                <select class="w-40 h-8 rounded-md"></select>
+                <select name="target-account" id="t-target-account" class="w-40 h-8 rounded-md"></select>
               </div>
 
               <div id="t-choose-category ">
                 <p>Category:</p>
-                <select class="w-40 h-8 rounded-md mb-2"></select>
+                <select id="t-category-dropdown" class="w-40 h-8 rounded-md mb-2"></select>
                 <div id="t-add-category" class="flex flex-col items-center gap-y-2">
                   <div class="flex h-auto w-8">
-                    <img src="./images/svg/addCategory.svg" alt="add category +" />
+                    <img id="t-new-category-icon" src="./images/svg/addCategory.svg" alt="add category +" />
                   </div>
 
-                  <input class="w-40 h-8 rounded-md" type="text" />
-                  <button type="button">Add new category</button>
+                  <form class="items-center" id="t-new-category-form">
+                    <input
+                      class="p-3 rounded-lg"
+                      type="text"
+                      id="t-new-category"
+                      name="newCategory"
+                      placeholder="New Category"
+                    />
+                    <button class="bg-green-600 p-3 rounded-lg font-semibold text-white" type="submit">
+                      Add new category
+                    </button>
+                  </form>
                 </div>
               </div>
 
