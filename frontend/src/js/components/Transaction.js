@@ -203,7 +203,6 @@ $(document).ready(async function () {
       // }
 
       if (selectedValue === "Transfer") {
-        console.log("transfer");
         gsap.to([tContainer, tChooseAccount], { maxHeight: 200, duration: 0.5 });
       } else {
         gsap.to([tContainer, tChooseAccount], { maxHeight: 0, duration: 0.5 });
