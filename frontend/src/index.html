@@ -8,6 +8,8 @@
     <!-- jQuery link -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" defer></script>
     <!-- JS *Sequence matters* -->
+    <!-- GSAP link -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script type="module" src="./js/common.js" defer></script>
     <script type="module" src="./js/index.js" defer></script>
     <script type="module" src="./js/components/Account.js" defer></script>
@@ -38,7 +40,6 @@
         <!-- Transaction | id prefix: 't-' -->
         <section id="sec-transaction">
           <h1 class="text-xl font-extrabold text-[#262634] tracking-wider">New Transaction</h1>
-          <!-- <form action=""> -->
           <div class="text-l font-medium">Transaction:</div>
           <div class="flex flex-wrap justify-start items-center gap-4" id="t-method">
             <div class="flex gap-2">
@@ -55,19 +56,23 @@
             </div>
           </div>
 
-          <div class="text-l font-medium">Account:</div>
-          <div id="t-container" class="flex flex-wrap gap-4">
-            <div id="t-choose-account">
+          <div id="t-account-label" class="text-l font-medium overflow-hidden max-h-0 transition-max-height">
+            Account:
+          </div>
+          <div id="t-container" class="flex flex-wrap gap-4 overflow-hidden max-h-0 transition-max-height">
+            <div id="t-choose-account" class="overflow-hidden max-h-0 transition-max-height">
               <p>From:</p>
-              <select name="base-account" id="t-desired-account" class="w-40 h-8 rounded-md"></select>
+              <select name="base-account" id="t-desired-account" class="w-40 h-8 rounded-md">
+                <option value="-1" selected disabled>Choose Account</option>
+              </select>
             </div>
 
-            <div id="t-choose-target">
+            <div id="t-choose-target" class="overflow-hidden max-h-0 transition-max-height">
               <p>To:</p>
               <select name="target-account" id="t-target-account" class="w-40 h-8 rounded-md"></select>
             </div>
 
-            <div id="t-choose-category ">
+            <div id="t-choose-category" class="overflow-hidden max-h-0 transition-max-height">
               <p>Category:</p>
               <select id="t-category-dropdown" class="w-40 h-8 rounded-md mb-2"></select>
               <div id="t-add-category" class="flex flex-col items-center gap-y-2">
@@ -90,7 +95,7 @@
               </div>
             </div>
 
-            <div id="t-add-description">
+            <div id="t-add-description" class="overflow-hidden max-h-0 transition-max-height">
               <p>Description</p>
               <textarea
                 id="t-description-textarea"
@@ -101,7 +106,7 @@
               ></textarea>
             </div>
 
-            <div id="t-add-amount">
+            <div id="t-add-amount" class="overflow-hidden max-h-0 transition-max-height">
               <p>Amount:</p>
               <input
                 class="indent-2"
@@ -115,11 +120,10 @@
               />
             </div>
 
-            <div id="t-transfer">
+            <div id="t-transaction-btn" class="overflow-hidden max-h-0 transition-max-height">
               <button class="bg-green-600 p-3 rounded-lg font-semibold text-white">Add transaction</button>
             </div>
           </div>
-          <!-- </form> -->
         </section>
 
         <!-- Accounts Summary | id prefix: 'as-' -->

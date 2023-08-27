@@ -33,6 +33,10 @@ $(document).ready(async function () {
       const toAccount = $("#t-target-account");
       toAccount.empty();
 
+      // Add the default placeholder option
+      const defaultOption = $("<option selected disabled></option>").val("-1").text("Choose Account");
+      toAccount.append(defaultOption);
+
       // Display accounts that have been fetched in options for "to account"
       fetchedAccounts.forEach((account) => {
         if (account.id !== selectedFromAccountId) {
@@ -49,7 +53,8 @@ $(document).ready(async function () {
       const categoryOptions = $("<option></option>").val(category.id).text(`${category.name}`);
       selectCategory.append(categoryOptions);
     });
-
+    const defaultOption = $("<option selected disabled></option>").val("-1").text("Choose Category");
+    selectCategory.append(defaultOption);
     //======================
     // Create new category
     //======================
@@ -142,7 +147,7 @@ $(document).ready(async function () {
       input[0].setSelectionRange(caret_pos, caret_pos);
     }
 
-    $("#t-transfer").on("click", async function () {
+    $("#t-transaction-btn").on("click", async function () {
       // Get input values
       const transactionType = $("input[name='transaction']:checked").val();
       const fromAccountId = parseInt($("#t-desired-account").val(), 10);
@@ -176,6 +181,87 @@ $(document).ready(async function () {
       //===============PERSONEL NOTE==========
       // put error message to validation result fail
       //put confirm message to validation result success
+    });
+
+    // Add event listener to radio buttons with name "transaction"
+    $("input[name='transaction']").on("change", function () {
+      const selectedValue = $(this).val();
+      const tContainer = $("#t-container");
+      const tAccountLabel = $("#t-account-label");
+      const tChooseAccount = $("#t-choose-account");
+      const tChooseTarget = $("#t-choose-target");
+      const tChooseCategory = $("#t-choose-category");
+      const tAddDescription = $("#t-add-description");
+      const tTransactionButton = $("#t-transaction-btn");
+
+      // if (selectedValue === "Transfer") {
+      //   gsap.set([tChooseTarget, tAccountLabel], { clearProps: "maxHeight" });
+      //   gsap.to([tChooseAccount, tContainer], { maxHeight: tContainer[0].scrollHeight, duration: 0.5 });
+      // } else {
+      //   gsap.set([tChooseAccount, tAccountLabel], { clearProps: "maxHeight" });
+      //   gsap.to([tChooseTarget, tChooseCategory, tAddDescription, tTransactionButton], { maxHeight: 0, duration: 0.5 });
+      // }
+
+      if (selectedValue === "Transfer") {
+        console.log("transfer");
+        gsap.to([tContainer, tChooseAccount], { maxHeight: 200, duration: 0.5 });
+      } else {
+        gsap.to([tContainer, tChooseAccount], { maxHeight: 0, duration: 0.5 });
+      }
+    });
+    $("#t-desired-account").on("change", function () {
+      const selectedValue = $(this).val();
+      const tChooseTarget = $("#t-choose-target");
+
+      if (selectedValue !== "-1") {
+        gsap.to([tChooseTarget], { maxHeight: 200, duration: 0.5 });
+      } else {
+        gsap.to([tChooseTarget], { maxHeight: 0, duration: 0.5 });
+      }
+    });
+
+    $("#t-category-dropdown").on("change", function () {
+      const selectedValue = $(this).val();
+      const tAddDescription = $("#t-add-description");
+
+      if (selectedValue !== "-1") {
+        gsap.to([tAddDescription], { maxHeight: tAddDescription[0].scrollHeight, duration: 0.5 });
+      } else {
+        gsap.to([tAddDescription], { maxHeight: 0, duration: 0.5 });
+      }
+    });
+
+    $("#t-target-account").on("change", function () {
+      const selectedValue = $(this).val();
+      const tChooseCategory = $("#t-choose-category");
+
+      if (selectedValue !== "-1") {
+        gsap.to([tChooseCategory], { maxHeight: tChooseCategory[0].scrollHeight, duration: 0.5 });
+      } else {
+        gsap.to([tChooseCategory], { maxHeight: 0, duration: 0.5 });
+      }
+    });
+
+    $("#t-description-textarea").on("input", function () {
+      const textContent = $(this).val();
+      const tAddAmount = $("#t-add-amount");
+
+      if (textContent !== "") {
+        gsap.to([tAddAmount], { maxHeight: tAddAmount[0].scrollHeight, duration: 0.5 });
+      } else {
+        gsap.to([tAddAmount], { maxHeight: 0, duration: 0.5 });
+      }
+    });
+
+    $("#t-amound-input").on("input", function () {
+      const inputValue = $(this).val();
+      const tTransactionButton = $("#t-transaction-btn");
+
+      if (inputValue !== null) {
+        gsap.to([tTransactionButton], { maxHeight: tTransactionButton[0].scrollHeight, duration: 0.5 });
+      } else {
+        gsap.to([tTransactionButton], { maxHeight: 0, duration: 0.5 });
+      }
     });
   } catch (err) {
     console.error(err);
