@@ -194,14 +194,6 @@ $(document).ready(async function () {
       const tAddDescription = $("#t-add-description");
       const tTransactionButton = $("#t-transaction-btn");
 
-      // if (selectedValue === "Transfer") {
-      //   gsap.set([tChooseTarget, tAccountLabel], { clearProps: "maxHeight" });
-      //   gsap.to([tChooseAccount, tContainer], { maxHeight: tContainer[0].scrollHeight, duration: 0.5 });
-      // } else {
-      //   gsap.set([tChooseAccount, tAccountLabel], { clearProps: "maxHeight" });
-      //   gsap.to([tChooseTarget, tChooseCategory, tAddDescription, tTransactionButton], { maxHeight: 0, duration: 0.5 });
-      // }
-
       if (selectedValue === "Transfer") {
         gsap.to([tContainer, tChooseAccount], { maxHeight: 200, duration: 0.5 });
       } else {
