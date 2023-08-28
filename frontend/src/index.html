@@ -70,10 +70,10 @@
             <!-- <div id="t-account-label" class="text-l font-medium overflow-hidden max-h-0 transition-max-height mt-2">
               Account:
             </div> -->
-            <div id="t-container" class="flex flex-wrap gap-4 overflow-hidden max-h-0 transition-max-height mt-4">
+            <div id="t-container" class="flex flex-wrap gap-4 mt-4">
               <div
                 id="t-choose-account"
-                class="overflow-hidden transition-height duration-500 shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-red-400"
+                class="invisible rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-red-400"
               >
                 <p>From:</p>
                 <select name="base-account" id="t-desired-account" class="w-40 h-8 rounded-md">
@@ -83,7 +83,7 @@
 
               <div
                 id="t-choose-target"
-                class="overflow-hidden transition-height duration-500 shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-red-400"
+                class="invisible rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-red-400"
               >
                 <p>To:</p>
                 <select name="target-account" id="t-target-account" class="w-40 h-8 rounded-md"></select>
@@ -91,7 +91,7 @@
 
               <div
                 id="t-choose-category"
-                class="overflow-hidden transition-height duration-500 shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-red-400"
+                class="invisible rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-red-400"
               >
                 <p>Category:</p>
                 <select id="t-category-dropdown" class="w-40 h-8 rounded-md mb-2"></select>
@@ -100,38 +100,40 @@
                     <img id="t-new-category-icon" src="./images/svg/addCategory.svg" alt="add category +" />
                   </div>
 
-                  <form class="hidden flex-col items-center" id="t-new-category-form">
-                    <input
-                      class="p-3 rounded-lg w-40"
-                      type="text"
-                      id="t-new-category"
-                      name="newCategory"
-                      placeholder="New Category"
-                    />
-                    <button class="bg-green-600 p-1 rounded-lg text-white my-2 w-40 h-8 text-base" type="submit">
-                      Add new category
-                    </button>
-                  </form>
+                  <div class="flex flex-col items-center">
+                    <form class="invisible flex flex-col items-center" id="t-new-category-form">
+                      <input
+                        class="p-3 rounded-lg w-40"
+                        type="text"
+                        id="t-new-category"
+                        name="newCategory"
+                        placeholder="New Category"
+                      />
+                      <button class="bg-green-600 p-1 rounded-lg text-white my-2 w-40 h-8 text-base" type="submit">
+                        Add new category
+                      </button>
+                    </form>
+                  </div>
                 </div>
               </div>
 
               <div
                 id="t-add-description"
-                class="overflow-hidden transition-height duration-500 h- shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-red-400"
+                class="invisible rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-red-400"
               >
                 <p>Description</p>
                 <textarea
                   id="t-description-textarea"
-                  rows="10"
+                  rows="5"
                   class="w-40 rounded-md text-xs resize-none"
                   placeholder="Write your description here..."
-                  maxlength="240"
+                  maxlength="140"
                 ></textarea>
               </div>
 
               <div
                 id="t-add-amount"
-                class="overflow-hidden transition-height duration-500 shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-red-400"
+                class="invisible rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-red-400"
               >
                 <p>Amount:</p>
                 <input
@@ -146,10 +148,10 @@
                 />
               </div>
 
-              <div id="t-transaction-btn" class="overflow-hidden transition-height duration-500">
+              <div id="t-transaction-btn" class="invisible">
                 <button
                   id="t-transaction-form-button"
-                  class="bg-green-600 p-3 rounded-lg font-semibold text-white"
+                  class="bg-green-600 p-3 rounded-md font-semibold text-white shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)]"
                 ></button>
               </div>
               <img

@@ -235,172 +235,272 @@ $(document).ready(async function () {
       //===============PERSONAL NOTE==========
       // put error message for validation result fail
       // put confirm message for validation result success
+      //show error message for validation result
     });
+
     //==========================================
     // Step by step animations, hide and show
     //==========================================
-    // Add event listener to radio buttons with name "transaction"
-    $("input[name='transaction']").on("change", function () {
-      const selectedValue = $(this).val();
-      const tContainer = $("#t-container");
-      const tChooseAccount = $("#t-choose-account");
-      const tChooseTarget = $("#t-choose-target");
-      const tChooseCategory = $("#t-choose-category");
-      const tAddDescription = $("#t-add-description");
-      const tAddDescriptionText = $("#t-description-textarea");
-      const tTransactionFormButton = $("#t-transaction-form-button");
-      const tTransactionButton = $("#t-transaction-btn");
-      const tDesiredAccount = $("#t-desired-account");
-      const tCategoryDropdown = $("#t-category-dropdown");
-      const tTargetAccount = $("#t-target-account");
-      const tAmount = $("#t-add-amount");
-      const tAmountInput = $("#t-amound-input");
 
-      // Set selected options to -1
+    //target elements on global scope
+    // container of input elements
+    const tContainer = $("#t-container");
+
+    //From account
+    const tChooseAccount = $("#t-choose-account");
+    const tDesiredAccount = $("#t-desired-account");
+
+    //To account
+    const tChooseTarget = $("#t-choose-target");
+    const tTargetAccount = $("#t-target-account");
+
+    //Category
+    const tChooseCategory = $("#t-choose-category");
+    const tCategoryDropdown = $("#t-category-dropdown");
+
+    //Description
+    const tAddDescription = $("#t-add-description");
+    const tAddDescriptionText = $("#t-description-textarea");
+
+    //Amount
+    const tAmount = $("#t-add-amount");
+    const tAmountInput = $("#t-amound-input");
+
+    //transaction button
+    const tTransactionButton = $("#t-transaction-btn");
+    const tTransactionFormButton = $("#t-transaction-form-button");
+
+    //add event handler for transaction type change
+    $("input[name='transaction']").on("change", function () {
+      // type of transfer
+      const selectedValue = $(this).val();
+
+      //make button text dynamic
+      tTransactionFormButton.text(`${selectedValue}`);
+
+      // make sure inputs are cleared after selected value changed
       tDesiredAccount.val("-1");
       tCategoryDropdown.val("-1");
       tTargetAccount.val("-1");
       tAmountInput.val("");
       tAddDescriptionText.val("");
+      tChooseAccount.removeClass("invisible");
+      tChooseTarget.addClass("invisible");
+      tChooseCategory.addClass("invisible");
+      tAddDescription.addClass("invisible");
+      tAmount.addClass("invisible");
+      tTransactionButton.addClass("invisible");
 
-      tTransactionFormButton.text(`${selectedValue}`);
+      gsap.set(tChooseAccount, { opacity: 0, height: 0 });
+      gsap.to(tChooseAccount, { opacity: 1, height: "auto", duration: 1, ease: "power2.out" });
+    });
 
-      // Toggle the 'h-auto' class based on selected transaction
-      [tChooseAccount, tChooseTarget, tChooseCategory, tAddDescription, tAmount, tTransactionButton].forEach((el) => {
-        el.removeClass("h-auto");
-      });
+    //add event handler for "From Account"
+    tDesiredAccount.on("change", function () {
+      // type of transfer
+      const selectedValue = $("input[name='transaction']:checked").val();
 
-      if (selectedValue === "Transfer") {
-        [tChooseAccount, tChooseTarget].forEach((el) => {
-          el.addClass("h-20");
-        });
-        tChooseAccount.show();
+      if (selectedValue !== "Transfer") {
+        tChooseTarget.hide();
+        tChooseCategory.removeClass("invisible");
+      } else {
         tChooseTarget.show();
-      } else if (selectedValue === "Deposit" || selectedValue === "Withdraw") {
-        tChooseCategory.addClass("h-auto");
-        tChooseAccount.addClass("h-20");
-        tChooseTarget.hide();
-      } else {
-        [tChooseAccount].forEach((el) => {
-          el.addClass("h-20 ");
-        });
-        tChooseTarget.hide();
-        tChooseCategory.hide();
       }
-      gsap.to([tChooseAccount, tChooseTarget, tChooseCategory, tAddDescription, tAmount, tTransactionButton], {
-        maxHeight: 0,
-        duration: 0.5,
-      });
 
-      if (selectedValue === "Transfer") {
-        // Animate showing "From" and "To" account
-        gsap.to([tContainer, tChooseAccount, tChooseTarget], {
-          maxHeight: 200,
-          duration: 0.5,
-        });
-      } else if (selectedValue === "Deposit" || selectedValue === "Withdraw") {
-        // Animate showing only "From" account and "Category"
-        gsap.to([tContainer], {
-          maxHeight: tContainer[0].scrollHeight,
-          duration: 0.5,
-        });
-        gsap.to([tChooseCategory], {
-          maxHeight: tChooseCategory[0].scrollHeight,
-          duration: 0.5,
-        });
-        gsap.to([tChooseAccount], {
-          maxHeight: tChooseAccount[0].scrollHeight + 100,
-          duration: 0.5,
-        });
-        // Hide the "To" account section
-        tChooseTarget.hide();
+      if (tDesiredAccount.val() != -1) {
+        tChooseTarget.removeClass("invisible");
       } else {
-        // Animate showing only "From" account
-        gsap.to([tContainer, tChooseAccount], {
-          maxHeight: tContainer[0].scrollHeight + 100,
-          duration: 0.5,
-        });
-
-        // Hide the "To" account section and "Category" section
-        tChooseTarget.hide();
-        tChooseCategory.hide();
-      }
-      // Show the "To" account section if the selected transaction is "Transfer"
-      // if (selectedValue === "Transfer") {
-      //   tChooseTarget.show();
-      // }
-    });
-    $("#t-desired-account").on("change", function () {
-      const selectedValue = $(this).val();
-      const tChooseTarget = $("#t-choose-target");
-
-      if (selectedValue !== "-1") {
-        gsap.to([tChooseTarget], { maxHeight: tChooseTarget[0].scrollHeight, duration: 0.5 });
-      } else {
-        gsap.to([tChooseTarget], { maxHeight: 0, duration: 0.5 });
-      }
-      if (selectedValue !== "-1") {
-        $("#t-choose-category").hide();
-      }
-      {
-        $("#t-choose-category").show();
+        tChooseTarget.addClass("invisible");
       }
     });
 
-    $("#t-category-dropdown").on("change", function () {
-      const selectedValue = $(this).val();
-      const tAddDescription = $("#t-add-description");
-
-      if (selectedValue !== "-1") {
-        gsap.to([tAddDescription], { maxHeight: tAddDescription[0].scrollHeight, duration: 0.5 });
-      } else {
-        gsap.to([tAddDescription], { maxHeight: 0, duration: 0.5 });
-      }
+    //show category when "To account" is selected
+    tTargetAccount.on("change", function () {
+      tChooseCategory.removeClass("invisible");
     });
 
-    $("#t-target-account").on("change", function () {
-      const selectedValue = $(this).val();
-      const tChooseCategory = $("#t-choose-category");
-
-      if (selectedValue !== "-1") {
-        gsap.to([tChooseCategory], { maxHeight: tChooseCategory[0].scrollHeight, duration: 0.5 });
-      } else {
-        gsap.to([tChooseCategory], { maxHeight: 0, duration: 0.5 });
-      }
-    });
-
-    $("#t-description-textarea").on("input", function () {
-      const textContent = $(this).val();
-      const tAddAmount = $("#t-add-amount");
-
-      if (textContent !== "") {
-        gsap.to([tAddAmount], { maxHeight: tAddAmount[0].scrollHeight, duration: 0.5 });
-      } else {
-        gsap.to([tAddAmount], { maxHeight: 0, duration: 0.5 });
-      }
-    });
-
-    $("#t-amound-input").on("input", function () {
-      const inputValue = $(this).val();
-      const tTransactionButton = $("#t-transaction-btn");
-
-      if (inputValue !== "") {
-        gsap.to([tTransactionButton], { maxHeight: tTransactionButton[0].scrollHeight, duration: 0.5 });
-      } else {
-        gsap.to([tTransactionButton], { maxHeight: 0, duration: 0.5 });
-      }
-    });
-
+    // category add svg event handlers
     $("#t-new-category-icon").click(function () {
       const tNewCategoryForm = $("#t-new-category-form");
-      if (tNewCategoryForm.hasClass("hidden")) {
-        gsap.to(tNewCategoryForm, { maxHeight: 500, duration: 0.5 });
-        tNewCategoryForm.removeClass("hidden").addClass("flex");
+      if (tNewCategoryForm.hasClass("invisible")) {
+        tNewCategoryForm.removeClass("invisible");
       } else {
-        gsap.to(tNewCategoryForm, { maxHeight: 0, duration: 0.5 });
-        tNewCategoryForm.removeClass("flex").addClass("hidden");
+        tNewCategoryForm.addClass("invisible");
       }
     });
+
+    //show description when category selected
+    tCategoryDropdown.on("change", function () {
+      tAddDescription.removeClass("invisible");
+    });
+
+    // show amount section when description is not null
+    tAddDescriptionText.on("input", function () {
+      tAmount.removeClass("invisible");
+    });
+
+    tAmountInput.on("input", function () {
+      tTransactionButton.removeClass("invisible");
+    });
+
+    // Add event listener to radio buttons with name "transaction"
+    // $("input[name='transaction']").on("change", function () {
+    //   const selectedValue = $(this).val();
+    //   const tContainer = $("#t-container");
+    //   const tChooseAccount = $("#t-choose-account");
+    //   const tChooseTarget = $("#t-choose-target");
+    //   const tChooseCategory = $("#t-choose-category");
+    //   const tAddDescription = $("#t-add-description");
+    //   const tAddDescriptionText = $("#t-description-textarea");
+    //   const tTransactionFormButton = $("#t-transaction-form-button");
+    //   const tTransactionButton = $("#t-transaction-btn");
+    //   const tDesiredAccount = $("#t-desired-account");
+    //   const tCategoryDropdown = $("#t-category-dropdown");
+    //   const tTargetAccount = $("#t-target-account");
+    //   const tAmount = $("#t-add-amount");
+    //   const tAmountInput = $("#t-amound-input");
+
+    //   // Set selected options to -1
+    //   tDesiredAccount.val("-1");
+    //   tCategoryDropdown.val("-1");
+    //   tTargetAccount.val("-1");
+    //   tAmountInput.val("");
+    //   tAddDescriptionText.val("");
+
+    //   tTransactionFormButton.text(`${selectedValue}`);
+
+    //   // Toggle the 'h-auto' class based on selected transaction
+    //   [tChooseAccount, tChooseTarget, tChooseCategory, tAddDescription, tAmount, tTransactionButton].forEach((el) => {
+    //     el.removeClass("h-auto");
+    //   });
+
+    //   if (selectedValue === "Transfer") {
+    //     [tChooseAccount, tChooseTarget].forEach((el) => {
+    //       el.addClass("h-20");
+    //     });
+    //     tChooseAccount.show();
+    //     tChooseTarget.show();
+    //   } else if (selectedValue === "Deposit" || selectedValue === "Withdraw") {
+    //     tChooseCategory.addClass("h-auto");
+    //     tChooseAccount.addClass("h-20");
+    //     tChooseTarget.hide();
+    //   } else {
+    //     [tChooseAccount].forEach((el) => {
+    //       el.addClass("h-20 ");
+    //     });
+    //     tChooseTarget.hide();
+    //     tChooseCategory.hide();
+    //   }
+    //   gsap.to([tChooseAccount, tChooseTarget, tChooseCategory, tAddDescription, tAmount, tTransactionButton], {
+    //     maxHeight: 0,
+    //     duration: 0.5,
+    //   });
+
+    //   if (selectedValue === "Transfer") {
+    //     // Animate showing "From" and "To" account
+    //     gsap.to([tContainer, tChooseAccount, tChooseTarget], {
+    //       maxHeight: 200,
+    //       duration: 0.5,
+    //     });
+    //   } else if (selectedValue === "Deposit" || selectedValue === "Withdraw") {
+    //     // Animate showing only "From" account and "Category"
+    //     gsap.to([tContainer], {
+    //       maxHeight: tContainer[0].scrollHeight,
+    //       duration: 0.5,
+    //     });
+    //     gsap.to([tChooseCategory], {
+    //       maxHeight: tChooseCategory[0].scrollHeight,
+    //       duration: 0.5,
+    //     });
+    //     gsap.to([tChooseAccount], {
+    //       maxHeight: tChooseAccount[0].scrollHeight + 100,
+    //       duration: 0.5,
+    //     });
+    //     // Hide the "To" account section
+    //     tChooseTarget.hide();
+    //   } else {
+    //     // Animate showing only "From" account
+    //     gsap.to([tContainer, tChooseAccount], {
+    //       maxHeight: tContainer[0].scrollHeight + 100,
+    //       duration: 0.5,
+    //     });
+
+    //     // Hide the "To" account section and "Category" section
+    //     tChooseTarget.hide();
+    //     tChooseCategory.hide();
+    //   }
+    // });
+    // $("#t-desired-account").on("change", function () {
+    //   const selectedValue = $(this).val();
+    //   const tChooseTarget = $("#t-choose-target");
+
+    //   if (selectedValue !== "-1") {
+    //     gsap.to([tChooseTarget], { maxHeight: tChooseTarget[0].scrollHeight, duration: 0.5 });
+    //   } else {
+    //     gsap.to([tChooseTarget], { maxHeight: 0, duration: 0.5 });
+    //   }
+    //   if (selectedValue !== "-1") {
+    //     $("#t-choose-category").hide();
+    //   }
+    //   {
+    //     $("#t-choose-category").show();
+    //   }
+    // });
+
+    // $("#t-category-dropdown").on("change", function () {
+    //   const selectedValue = $(this).val();
+    //   const tAddDescription = $("#t-add-description");
+
+    //   if (selectedValue !== "-1") {
+    //     gsap.to([tAddDescription], { maxHeight: tAddDescription[0].scrollHeight, duration: 0.5 });
+    //   } else {
+    //     gsap.to([tAddDescription], { maxHeight: 0, duration: 0.5 });
+    //   }
+    // });
+
+    // $("#t-target-account").on("change", function () {
+    //   const selectedValue = $(this).val();
+    //   const tChooseCategory = $("#t-choose-category");
+
+    //   if (selectedValue !== "-1") {
+    //     gsap.to([tChooseCategory], { maxHeight: tChooseCategory[0].scrollHeight, duration: 0.5 });
+    //   } else {
+    //     gsap.to([tChooseCategory], { maxHeight: 0, duration: 0.5 });
+    //   }
+    // });
+
+    // $("#t-description-textarea").on("input", function () {
+    //   const textContent = $(this).val();
+    //   const tAddAmount = $("#t-add-amount");
+
+    //   if (textContent !== "") {
+    //     gsap.to([tAddAmount], { maxHeight: tAddAmount[0].scrollHeight, duration: 0.5 });
+    //   } else {
+    //     gsap.to([tAddAmount], { maxHeight: 0, duration: 0.5 });
+    //   }
+    // });
+
+    // $("#t-amound-input").on("input", function () {
+    //   const inputValue = $(this).val();
+    //   const tTransactionButton = $("#t-transaction-btn");
+
+    //   if (inputValue !== "") {
+    //     gsap.to([tTransactionButton], { maxHeight: tTransactionButton[0].scrollHeight, duration: 0.5 });
+    //   } else {
+    //     gsap.to([tTransactionButton], { maxHeight: 0, duration: 0.5 });
+    //   }
+    // });
+
+    // $("#t-new-category-icon").click(function () {
+    //   const tNewCategoryForm = $("#t-new-category-form");
+    //   if (tNewCategoryForm.hasClass("hidden")) {
+    //     gsap.to(tNewCategoryForm, { maxHeight: 500, duration: 0.5 });
+    //     tNewCategoryForm.removeClass("hidden").addClass("flex");
+    //   } else {
+    //     gsap.to(tNewCategoryForm, { maxHeight: 0, duration: 0.5 });
+    //     tNewCategoryForm.removeClass("flex").addClass("hidden");
+    //   }
+    // });
   } catch (err) {
     console.error(err);
   }
