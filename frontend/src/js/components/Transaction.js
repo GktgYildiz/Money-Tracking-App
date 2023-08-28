@@ -147,6 +147,10 @@ $(document).ready(async function () {
       input[0].setSelectionRange(caret_pos, caret_pos);
     }
 
+    //==========================================
+    // transfer button click handlers
+    //==========================================
+
     $("#t-transaction-btn").on("click", async function () {
       // Get input values
       const transactionType = $("input[name='transaction']:checked").val();
@@ -160,44 +164,141 @@ $(document).ready(async function () {
           .replace(/[^\d.]/g, "")
       );
 
-      const transactionPayload = {
-        newTransaction: {
-          type: transactionType,
-          accountIdFrom: fromAccountId,
-          accountIdTo: toAccountId,
-          categoryId: categoryId,
-          description: description,
-          amount: amount,
-        },
-      };
+      let transactionPayload; // Define a variable to hold the transaction payload
+
+      // Check the selected transaction type and create the appropriate payload
+      if (transactionType === "Transfer") {
+        transactionPayload = {
+          newTransaction: {
+            type: transactionType,
+            accountIdFrom: fromAccountId,
+            accountIdTo: toAccountId,
+            categoryId: categoryId,
+            description: description,
+            amount: amount,
+          },
+        };
+      } else if (transactionType === "Deposit" || transactionType === "Withdraw") {
+        transactionPayload = {
+          newTransaction: {
+            type: transactionType,
+            accountId: fromAccountId,
+            categoryId: categoryId,
+            description: description,
+            amount: amount,
+          },
+        };
+      }
+
       try {
         const createdTransaction = await apiClient.createTransaction(transactionPayload);
         // Handle successful response, maybe show a success message.
         console.log("Transaction created:", createdTransaction);
+
+        // Display the success SVG icon and apply GSAP animation
+        const successIcon = $("#t-transaction-confirm-svg")
+          .attr("src", "./images/svg/correctCategory.svg")
+          .removeClass("invisible");
+        gsap.fromTo(successIcon, { opacity: 0 }, { opacity: 1, duration: 0.5 });
+
+        // Hide the success SVG icon after 3 seconds with GSAP animation
+        setTimeout(() => {
+          gsap.to(successIcon, {
+            opacity: 0,
+            duration: 0.5,
+            onComplete: function () {
+              successIcon.addClass("invisible"); // Add the invisible class after animation
+            },
+          });
+        }, 2500);
       } catch (error) {
         // Handle error, show an error message to the user.
         console.error("Transaction creation failed:", error);
-      }
-      //===============PERSONEL NOTE==========
-      // put error message to validation result fail
-      //put confirm message to validation result success
-    });
+        // Display the error SVG icon and apply GSAP animation
+        const errorIcon = $("#t-transaction-confirm-svg")
+          .attr("src", "./images/svg/errorCategory.svg")
+          .removeClass("invisible");
+        gsap.fromTo(errorIcon, { opacity: 0 }, { opacity: 1, duration: 0.5 });
 
+        // Hide the error SVG icon after 3 seconds with GSAP animation
+        setTimeout(() => {
+          gsap.to(errorIcon, {
+            opacity: 0,
+            duration: 0.5,
+            onComplete: function () {
+              errorIcon.addClass("invisible"); // Add the invisible class after animation
+            },
+          });
+        }, 2500);
+      }
+
+      //===============PERSONAL NOTE==========
+      // put error message for validation result fail
+      // put confirm message for validation result success
+    });
+    //==========================================
+    // Step by step animations, hide and show
+    //==========================================
     // Add event listener to radio buttons with name "transaction"
     $("input[name='transaction']").on("change", function () {
       const selectedValue = $(this).val();
       const tContainer = $("#t-container");
-      const tAccountLabel = $("#t-account-label");
       const tChooseAccount = $("#t-choose-account");
       const tChooseTarget = $("#t-choose-target");
       const tChooseCategory = $("#t-choose-category");
       const tAddDescription = $("#t-add-description");
+      const tAddDescriptionText = $("#t-description-textarea");
+      const tTransactionFormButton = $("#t-transaction-form-button");
       const tTransactionButton = $("#t-transaction-btn");
+      const tDesiredAccount = $("#t-desired-account");
+      const tCategoryDropdown = $("#t-category-dropdown");
+      const tTargetAccount = $("#t-target-account");
+      const tAmount = $("#t-add-amount");
+      const tAmountInput = $("#t-amound-input");
+
+      // Set selected options to -1
+      tDesiredAccount.val("-1");
+      tCategoryDropdown.val("-1");
+      tTargetAccount.val("-1");
+      tAmountInput.val("");
+      tAddDescriptionText.val("");
+
+      tTransactionFormButton.text(`${selectedValue}`);
+
+      gsap.to([tChooseAccount, tChooseTarget, tChooseCategory, tAddDescription, tAmount, tTransactionButton], {
+        maxHeight: 0,
+        duration: 0.5,
+      });
 
       if (selectedValue === "Transfer") {
-        gsap.to([tContainer, tChooseAccount], { maxHeight: 200, duration: 0.5 });
+        // Animate showing "From" and "To" account
+        gsap.to([tContainer, tChooseAccount, tChooseTarget], {
+          maxHeight: 200,
+          duration: 0.5,
+        });
+      } else if (selectedValue === "Deposit" || selectedValue === "Withdraw") {
+        // Animate showing only "From" account and "Category"
+        gsap.to([tContainer, tChooseAccount, tChooseCategory], {
+          maxHeight: 200,
+          duration: 0.5,
+        });
+
+        // Hide the "To" account section
+        tChooseTarget.hide();
       } else {
-        gsap.to([tContainer, tChooseAccount], { maxHeight: 0, duration: 0.5 });
+        // Animate showing only "From" account
+        gsap.to([tContainer, tChooseAccount], {
+          maxHeight: 200,
+          duration: 0.5,
+        });
+
+        // Hide the "To" account section and "Category" section
+        tChooseTarget.hide();
+        tChooseCategory.hide();
+      }
+      // Show the "To" account section if the selected transaction is "Transfer"
+      if (selectedValue === "Transfer") {
+        tChooseTarget.show();
       }
     });
     $("#t-desired-account").on("change", function () {
@@ -205,9 +306,15 @@ $(document).ready(async function () {
       const tChooseTarget = $("#t-choose-target");
 
       if (selectedValue !== "-1") {
-        gsap.to([tChooseTarget], { maxHeight: 200, duration: 0.5 });
+        gsap.to([tChooseTarget], { maxHeight: tChooseTarget[0].scrollHeight, duration: 0.5 });
       } else {
         gsap.to([tChooseTarget], { maxHeight: 0, duration: 0.5 });
+      }
+      if (selectedValue !== "-1") {
+        $("#t-choose-category").hide();
+      }
+      {
+        $("#t-choose-category").show();
       }
     });
 
@@ -248,7 +355,7 @@ $(document).ready(async function () {
       const inputValue = $(this).val();
       const tTransactionButton = $("#t-transaction-btn");
 
-      if (inputValue !== null) {
+      if (inputValue !== "") {
         gsap.to([tTransactionButton], { maxHeight: tTransactionButton[0].scrollHeight, duration: 0.5 });
       } else {
         gsap.to([tTransactionButton], { maxHeight: 0, duration: 0.5 });
