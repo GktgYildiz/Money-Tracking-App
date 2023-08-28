@@ -95,7 +95,7 @@ function calcBalance(account) {
 function setStyles() {
   $('#as-table-head th').addClass('px-4 py2')
   $('#as-table tr td:first-child').addClass('w-24 text-right px-4 py2')
-  $('#as-table tr td:nth-child(2)').addClass('px-4 py2')
-  $('#as-table tr td:last-child').addClass('px-4 py2 text-right')
+  $('#as-table tr td:nth-child(2)').addClass('px-4 py-2')
+  $('#as-table tr td:last-child').addClass('px-4 py-2 text-right')
   $('#as-table tr:nth-child(odd)').addClass('bg-slate-200')
 }
