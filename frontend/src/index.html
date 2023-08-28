@@ -47,98 +47,118 @@
         <!-- Transaction | id prefix: 't-' -->
         <section id="sec-transaction">
           <h1 class="text-xl font-extrabold text-[#262634] tracking-wider">New Transaction</h1>
-          <div class="text-l font-medium">Transaction:</div>
-          <div class="flex flex-wrap justify-start items-center gap-4" id="t-method">
-            <div class="flex gap-2">
-              <p>Deposit</p>
-              <input name="transaction" type="radio" id="t-deposit-btn" value="Deposit" />
-            </div>
-            <div class="flex gap-2">
-              <p>Withdraw</p>
-              <input name="transaction" type="radio" id="t-withdraw-btn" value="Withdraw" />
-            </div>
-            <div class="flex gap-2">
-              <p>Transfer</p>
-              <input name="transaction" type="radio" id="t-transfer-btn" value="Transfer" />
-            </div>
-          </div>
-
-          <div id="t-account-label" class="text-l font-medium overflow-hidden max-h-0 transition-max-height">
-            Account:
-          </div>
-          <div id="t-container" class="flex flex-wrap gap-4 overflow-hidden max-h-0 transition-max-height">
-            <div id="t-choose-account" class="overflow-hidden max-h-0 transition-max-height">
-              <p>From:</p>
-              <select name="base-account" id="t-desired-account" class="w-40 h-8 rounded-md">
-                <option value="-1" selected disabled>Choose Account</option>
-              </select>
-            </div>
-
-            <div id="t-choose-target" class="overflow-hidden max-h-0 transition-max-height">
-              <p>To:</p>
-              <select name="target-account" id="t-target-account" class="w-40 h-8 rounded-md"></select>
-            </div>
-
-            <div id="t-choose-category" class="overflow-hidden max-h-0 transition-max-height">
-              <p>Category:</p>
-              <select id="t-category-dropdown" class="w-40 h-8 rounded-md mb-2"></select>
-              <div id="t-add-category" class="flex flex-col items-center gap-y-2">
-                <div class="flex h-auto w-8">
-                  <img id="t-new-category-icon" src="./images/svg/addCategory.svg" alt="add category +" />
-                </div>
-
-                <form class="flex flex-col items-center" id="t-new-category-form">
-                  <input
-                    class="p-3 rounded-lg w-40"
-                    type="text"
-                    id="t-new-category"
-                    name="newCategory"
-                    placeholder="New Category"
-                  />
-                  <button class="bg-green-600 p-1 rounded-lg text-white my-2 w-40 h-8 text-base" type="submit">
-                    Add new category
-                  </button>
-                </form>
+          <div>
+            <div class="text-l font-medium">Transaction:</div>
+            <div
+              class="inline-flex flex-wrap justify-evenly items-center gap-4 bg-red-400 text-neutral-100 rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] w-75 h-15 px-3 py-2"
+              id="t-method"
+            >
+              <div class="flex gap-2">
+                <p>Deposit</p>
+                <input name="transaction" type="radio" id="t-deposit-btn" value="Deposit" />
+              </div>
+              <div class="flex gap-2">
+                <p>Withdraw</p>
+                <input name="transaction" type="radio" id="t-withdraw-btn" value="Withdraw" />
+              </div>
+              <div class="flex gap-2">
+                <p>Transfer</p>
+                <input name="transaction" type="radio" id="t-transfer-btn" value="Transfer" />
               </div>
             </div>
 
-            <div id="t-add-description" class="overflow-hidden max-h-0 transition-max-height">
-              <p>Description</p>
-              <textarea
-                id="t-description-textarea"
-                rows="10"
-                class="w-40 rounded-md text-xs resize-none"
-                placeholder="Write your description here..."
-                maxlength="240"
-              ></textarea>
-            </div>
+            <!-- <div id="t-account-label" class="text-l font-medium overflow-hidden max-h-0 transition-max-height mt-2">
+              Account:
+            </div> -->
+            <div id="t-container" class="flex flex-wrap gap-4 overflow-hidden max-h-0 transition-max-height mt-4">
+              <div
+                id="t-choose-account"
+                class="overflow-hidden transition-height duration-500 shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-red-400"
+              >
+                <p>From:</p>
+                <select name="base-account" id="t-desired-account" class="w-40 h-8 rounded-md">
+                  <option value="-1" selected disabled>Choose Account</option>
+                </select>
+              </div>
 
-            <div id="t-add-amount" class="overflow-hidden max-h-0 transition-max-height">
-              <p>Amount:</p>
-              <input
-                class="indent-2"
-                type="text"
-                name="currency-field"
-                id="t-amound-input"
-                pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
-                value=""
-                data-type="currency"
-                placeholder="$ 1,000,000.00"
+              <div
+                id="t-choose-target"
+                class="overflow-hidden transition-height duration-500 shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-red-400"
+              >
+                <p>To:</p>
+                <select name="target-account" id="t-target-account" class="w-40 h-8 rounded-md"></select>
+              </div>
+
+              <div
+                id="t-choose-category"
+                class="overflow-hidden transition-height duration-500 shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-red-400"
+              >
+                <p>Category:</p>
+                <select id="t-category-dropdown" class="w-40 h-8 rounded-md mb-2"></select>
+                <div id="t-add-category" class="flex flex-col items-center gap-y-2">
+                  <div class="flex h-auto w-8">
+                    <img id="t-new-category-icon" src="./images/svg/addCategory.svg" alt="add category +" />
+                  </div>
+
+                  <form class="hidden flex-col items-center" id="t-new-category-form">
+                    <input
+                      class="p-3 rounded-lg w-40"
+                      type="text"
+                      id="t-new-category"
+                      name="newCategory"
+                      placeholder="New Category"
+                    />
+                    <button class="bg-green-600 p-1 rounded-lg text-white my-2 w-40 h-8 text-base" type="submit">
+                      Add new category
+                    </button>
+                  </form>
+                </div>
+              </div>
+
+              <div
+                id="t-add-description"
+                class="overflow-hidden transition-height duration-500 h- shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-red-400"
+              >
+                <p>Description</p>
+                <textarea
+                  id="t-description-textarea"
+                  rows="10"
+                  class="w-40 rounded-md text-xs resize-none"
+                  placeholder="Write your description here..."
+                  maxlength="240"
+                ></textarea>
+              </div>
+
+              <div
+                id="t-add-amount"
+                class="overflow-hidden transition-height duration-500 shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-red-400"
+              >
+                <p>Amount:</p>
+                <input
+                  class="indent-2"
+                  type="text"
+                  name="currency-field"
+                  id="t-amound-input"
+                  pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
+                  value=""
+                  data-type="currency"
+                  placeholder="$ 1,000,000.00"
+                />
+              </div>
+
+              <div id="t-transaction-btn" class="overflow-hidden transition-height duration-500">
+                <button
+                  id="t-transaction-form-button"
+                  class="bg-green-600 p-3 rounded-lg font-semibold text-white"
+                ></button>
+              </div>
+              <img
+                id="t-transaction-confirm-svg"
+                class="w-12 h-12 invisible fill-blue-500"
+                src=""
+                alt="transaction tryCatch svg"
               />
             </div>
-
-            <div id="t-transaction-btn" class="overflow-hidden max-h-0 transition-max-height">
-              <button
-                id="t-transaction-form-button"
-                class="bg-green-600 p-3 rounded-lg font-semibold text-white"
-              ></button>
-            </div>
-            <img
-              id="t-transaction-confirm-svg"
-              class="w-12 h-12 invisible fill-blue-500"
-              src=""
-              alt="transaction tryCatch svg"
-            />
           </div>
         </section>
 

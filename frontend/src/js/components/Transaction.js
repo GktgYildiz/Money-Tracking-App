@@ -265,6 +265,28 @@ $(document).ready(async function () {
 
       tTransactionFormButton.text(`${selectedValue}`);
 
+      // Toggle the 'h-auto' class based on selected transaction
+      [tChooseAccount, tChooseTarget, tChooseCategory, tAddDescription, tAmount, tTransactionButton].forEach((el) => {
+        el.removeClass("h-auto");
+      });
+
+      if (selectedValue === "Transfer") {
+        [tChooseAccount, tChooseTarget].forEach((el) => {
+          el.addClass("h-20");
+        });
+        tChooseAccount.show();
+        tChooseTarget.show();
+      } else if (selectedValue === "Deposit" || selectedValue === "Withdraw") {
+        tChooseCategory.addClass("h-auto");
+        tChooseAccount.addClass("h-20");
+        tChooseTarget.hide();
+      } else {
+        [tChooseAccount].forEach((el) => {
+          el.addClass("h-20 ");
+        });
+        tChooseTarget.hide();
+        tChooseCategory.hide();
+      }
       gsap.to([tChooseAccount, tChooseTarget, tChooseCategory, tAddDescription, tAmount, tTransactionButton], {
         maxHeight: 0,
         duration: 0.5,
@@ -278,17 +300,24 @@ $(document).ready(async function () {
         });
       } else if (selectedValue === "Deposit" || selectedValue === "Withdraw") {
         // Animate showing only "From" account and "Category"
-        gsap.to([tContainer, tChooseAccount, tChooseCategory], {
-          maxHeight: 200,
+        gsap.to([tContainer], {
+          maxHeight: tContainer[0].scrollHeight,
           duration: 0.5,
         });
-
+        gsap.to([tChooseCategory], {
+          maxHeight: tChooseCategory[0].scrollHeight,
+          duration: 0.5,
+        });
+        gsap.to([tChooseAccount], {
+          maxHeight: tChooseAccount[0].scrollHeight + 100,
+          duration: 0.5,
+        });
         // Hide the "To" account section
         tChooseTarget.hide();
       } else {
         // Animate showing only "From" account
         gsap.to([tContainer, tChooseAccount], {
-          maxHeight: 200,
+          maxHeight: tContainer[0].scrollHeight + 100,
           duration: 0.5,
         });
 
@@ -297,9 +326,9 @@ $(document).ready(async function () {
         tChooseCategory.hide();
       }
       // Show the "To" account section if the selected transaction is "Transfer"
-      if (selectedValue === "Transfer") {
-        tChooseTarget.show();
-      }
+      // if (selectedValue === "Transfer") {
+      //   tChooseTarget.show();
+      // }
     });
     $("#t-desired-account").on("change", function () {
       const selectedValue = $(this).val();
@@ -359,6 +388,17 @@ $(document).ready(async function () {
         gsap.to([tTransactionButton], { maxHeight: tTransactionButton[0].scrollHeight, duration: 0.5 });
       } else {
         gsap.to([tTransactionButton], { maxHeight: 0, duration: 0.5 });
+      }
+    });
+
+    $("#t-new-category-icon").click(function () {
+      const tNewCategoryForm = $("#t-new-category-form");
+      if (tNewCategoryForm.hasClass("hidden")) {
+        gsap.to(tNewCategoryForm, { maxHeight: 500, duration: 0.5 });
+        tNewCategoryForm.removeClass("hidden").addClass("flex");
+      } else {
+        gsap.to(tNewCategoryForm, { maxHeight: 0, duration: 0.5 });
+        tNewCategoryForm.removeClass("flex").addClass("hidden");
       }
     });
   } catch (err) {
