@@ -15,12 +15,33 @@
     <script type="module" src="./js/components/Account.js" defer></script>
     <script type="module" src="./js/components/Transaction.js" defer></script>
     <script type="module" src="./js/components/TransactionHistory.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lora:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles.css" />
   </head>
 
   <body class="bg-slate-100 text-[#3F4A5A]">
-    <header class="flex justify-center items-center bg-green-800">
-      <div class="py-4 text-2xl font-extrabold text-white">My Tracker</div>
+    <header class="flex justify-around items-center py-4 font-lora">
+      <div class="py-4 w-40"><img src="./images/Logo.png" alt="logo" /></div>
+      <div class="py-4 text-xl text-deepBlue">
+        <ul class="flex flex-row justify-between list-none gap-x-14 items-center">
+          <li id="account-link" class="hover:text-burntSienna cursor-pointer">Account</li>
+          <li id="transaction-link">Transaction</li>
+          <li id="summary-link">Summary</li>
+          <li id="history-link">History</li>
+        </ul>
+      </div>
+      <div class="flex flex-row items-center py-4 text-base font-libre font-semibold text-deepBlue">
+        <img src="https://i.pravatar.cc/48?u=1" alt="user pp" class="rounded-full" />
+        <div class="px-4 gap-x-4 leading-none">
+          <p>Welcome,</p>
+          <p>Username</p>
+        </div>
+      </div>
     </header>
     <div class="container mx-auto h-screen grid grid-cols-1 mt-3">
       <main class="container mx-auto h-screen grid grid-cols-1">
@@ -31,7 +52,7 @@
             <form class="flex flex-wrap justify-start items-center gap-4" id="na-account-form">
               <label class="font-bold" for="newAccount">New Account:</label>
               <input class="p-3 rounded-lg" type="text" id="na-new-account" name="newAccount" placeholder="Mario" />
-              <button class="bg-green-600 p-3 rounded-lg font-semibold text-white" type="submit">Create</button>
+              <button class="bg-green-600 p-3 rounded-lg font-semibold text-whiteSmoke" type="submit">Create</button>
             </form>
           </div>
           <div class="p-2 font-bold text-green-600" id="na-result"></div>
@@ -46,89 +67,179 @@
 
         <!-- Transaction | id prefix: 't-' -->
         <section id="sec-transaction">
-          <h1 class="text-xl font-extrabold text-[#262634] tracking-wider">New Transaction</h1>
-          <div class="text-l font-medium">Transaction:</div>
-          <div class="flex flex-wrap justify-start items-center gap-4" id="t-method">
-            <div class="flex gap-2">
-              <p>Deposit</p>
-              <input name="transaction" type="radio" id="t-deposit-btn" value="Deposit" />
-            </div>
-            <div class="flex gap-2">
-              <p>Withdraw</p>
-              <input name="transaction" type="radio" id="t-withdraw-btn" value="Withdraw" />
-            </div>
-            <div class="flex gap-2">
-              <p>Transfer</p>
-              <input name="transaction" type="radio" id="t-transfer-btn" value="Transfer" />
-            </div>
-          </div>
-
-          <div id="t-account-label" class="text-l font-medium overflow-hidden max-h-0 transition-max-height">
-            Account:
-          </div>
-          <div id="t-container" class="flex flex-wrap gap-4 overflow-hidden max-h-0 transition-max-height">
-            <div id="t-choose-account" class="overflow-hidden max-h-0 transition-max-height">
-              <p>From:</p>
-              <select name="base-account" id="t-desired-account" class="w-40 h-8 rounded-md">
-                <option value="-1" selected disabled>Choose Account</option>
-              </select>
-            </div>
-
-            <div id="t-choose-target" class="overflow-hidden max-h-0 transition-max-height">
-              <p>To:</p>
-              <select name="target-account" id="t-target-account" class="w-40 h-8 rounded-md"></select>
-            </div>
-
-            <div id="t-choose-category" class="overflow-hidden max-h-0 transition-max-height">
-              <p>Category:</p>
-              <select id="t-category-dropdown" class="w-40 h-8 rounded-md mb-2"></select>
-              <div id="t-add-category" class="flex flex-col items-center gap-y-2">
-                <div class="flex h-auto w-8">
-                  <img id="t-new-category-icon" src="./images/svg/addCategory.svg" alt="add category +" />
-                </div>
-
-                <form class="flex flex-col items-center" id="t-new-category-form">
-                  <input
-                    class="p-3 rounded-lg w-40"
-                    type="text"
-                    id="t-new-category"
-                    name="newCategory"
-                    placeholder="New Category"
-                  />
-                  <button class="bg-green-600 p-1 rounded-lg text-white my-2 w-40 h-8 text-base" type="submit">
-                    Add new category
-                  </button>
-                </form>
+          <h1 class="flex flex-row gap-2 text-xl font-extrabold text-deepBlue tracking-wider">
+            New Transaction
+            <span id="t-svg-container" class="cursor-pointer">
+              <svg
+                id="t-new-transaction-svg"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px"
+                y="0px"
+                viewBox="0 0 256 256"
+                enable-background="new 0 0 256 256"
+                xml:space="preserve"
+                height="2rem"
+              >
+                <g>
+                  <g>
+                    <g>
+                      <g>
+                        <path
+                          d="M133.4 197.7L133.4 133.4 197.7 133.4 197.7 122.6 133.4 122.6 133.4 58.3 122.6 58.3 122.6 122.6 58.3 122.6 58.3 133.4 122.6 133.4 122.6 197.7 z"
+                        />
+                        <path
+                          d="M246,128c0-65.2-52.8-118-118-118C62.8,10,10,62.8,10,128c0,65.2,52.8,118,118,118C193.2,246,246,193.2,246,128z M20.7,128c0-59.2,48-107.3,107.3-107.3c59.2,0,107.3,48,107.3,107.3c0,59.2-48,107.3-107.3,107.3C68.8,235.3,20.7,187.2,20.7,128z"
+                        />
+                      </g>
+                    </g>
+                    <g></g>
+                    <g></g>
+                    <g></g>
+                    <g></g>
+                    <g></g>
+                    <g></g>
+                    <g></g>
+                    <g></g>
+                    <g></g>
+                    <g></g>
+                    <g></g>
+                    <g></g>
+                    <g></g>
+                    <g></g>
+                    <g></g>
+                  </g>
+                </g>
+              </svg>
+            </span>
+          </h1>
+          <div>
+            <div id="t-transaction-headline" class="invisible text-l font-medium">Transaction:</div>
+            <div
+              class="inline-flex invisible flex-wrap justify-evenly items-center gap-4 bg-burntSienna text-neutral-100 rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] w-100 h-20 px-3 py-2"
+              id="t-method"
+            >
+              <div
+                class="flex flex-row gap-2 p-2 bg-deepBlue rounded-md shadow-[0px_3px_1px_rgba(38,_38,_38,_1),_0_3px_5px_rgba(38,_38,_30,_1)]"
+                id="t-deposit-label"
+              >
+                <label for="t-deposit-btn" class="flex flex-row gap-3"
+                  ><span>Deposit</span> <img src="./images/svg/depositSvg.svg" class="w-6" alt="Deposit"
+                /></label>
+                <input name="transaction" type="radio" id="t-deposit-btn" value="Deposit" class="hidden" />
+              </div>
+              <div
+                class="flex flex-row gap-2 p-2 bg-deepBlue rounded-md shadow-[0px_3px_1px_rgba(38,_38,_38,_1),_0_3px_5px_rgba(38,_38,_30,_1)]"
+                id="t-withdraw-label"
+              >
+                <label for="t-withdraw-btn" class="flex flex-row gap-3"
+                  ><span>Withdraw</span> <img src="./images/svg/withdrawSvg.svg" class="w-5" alt="Deposit"
+                /></label>
+                <input name="transaction" type="radio" id="t-withdraw-btn" value="Withdraw" class="hidden" />
+              </div>
+              <div
+                class="flex flex-row gap-2 p-2 bg-deepBlue rounded-md shadow-[0px_3px_1px_rgba(38,_38,_38,_1),_0_3px_5px_rgba(38,_38,_30,_1)]"
+                id="t-transfer-label"
+              >
+                <label for="t-transfer-btn" class="flex flex-row gap-3"
+                  ><span>Transfer</span> <img src="./images/svg/transferSvg.svg" class="w-5" alt="Deposit"
+                /></label>
+                <input name="transaction" type="radio" id="t-transfer-btn" value="Transfer" class="hidden" />
               </div>
             </div>
 
-            <div id="t-add-description" class="overflow-hidden max-h-0 transition-max-height">
-              <p>Description</p>
-              <textarea
-                id="t-description-textarea"
-                rows="10"
-                class="w-40 rounded-md text-xs resize-none"
-                placeholder="Write your description here..."
-                maxlength="240"
-              ></textarea>
-            </div>
+            <div id="t-account-label" class="invisible text-l font-medium mt-5">Account:</div>
+            <div id="t-container" class="flex flex-wrap gap-4 mt-3">
+              <div
+                id="t-choose-account"
+                class="invisible rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-burntSienna"
+              >
+                <p>From:</p>
+                <select name="base-account" id="t-desired-account" class="w-40 h-8 rounded-md">
+                  <option value="-1" selected disabled>Choose Account</option>
+                </select>
+              </div>
 
-            <div id="t-add-amount" class="overflow-hidden max-h-0 transition-max-height">
-              <p>Amount:</p>
-              <input
-                class="indent-2"
-                type="text"
-                name="currency-field"
-                id="t-amound-input"
-                pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
-                value=""
-                data-type="currency"
-                placeholder="$ 1,000,000.00"
+              <div
+                id="t-choose-target"
+                class="invisible rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-burntSienna"
+              >
+                <p>To:</p>
+                <select name="target-account" id="t-target-account" class="w-40 h-8 rounded-md"></select>
+              </div>
+
+              <div
+                id="t-choose-category"
+                class="invisible rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-burntSienna"
+              >
+                <p>Category:</p>
+                <select id="t-category-dropdown" class="w-40 h-8 rounded-md mb-2"></select>
+                <div id="t-add-category" class="flex flex-col items-center gap-y-2">
+                  <div class="flex h-auto w-8">
+                    <img id="t-new-category-icon" src="./images/svg/addCategory.svg" alt="add category +" />
+                  </div>
+
+                  <div class="flex flex-col items-center">
+                    <form class="invisible flex flex-col items-center" id="t-new-category-form">
+                      <input
+                        class="p-3 rounded-lg w-40"
+                        type="text"
+                        id="t-new-category"
+                        name="newCategory"
+                        placeholder="New Category"
+                      />
+                      <button class="bg-green-600 p-1 rounded-lg text-whiteSmoke my-2 w-40 h-8 text-base" type="submit">
+                        Add new category
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                id="t-add-description"
+                class="invisible rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-burntSienna"
+              >
+                <p>Description</p>
+                <textarea
+                  id="t-description-textarea"
+                  rows="7"
+                  class="w-40 rounded-md text-xs resize-none p-1"
+                  placeholder="Write your description here..."
+                  maxlength="140"
+                ></textarea>
+              </div>
+
+              <div
+                id="t-add-amount"
+                class="invisible rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-burntSienna"
+              >
+                <p>Amount:</p>
+                <input
+                  class="indent-2 rounded-lg w-40 h-8"
+                  type="text"
+                  name="currency-field"
+                  id="t-amound-input"
+                  pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
+                  value=""
+                  data-type="currency"
+                  placeholder="$ 1,000,000.00"
+                />
+              </div>
+
+              <div id="t-transaction-btn" class="invisible">
+                <button
+                  id="t-transaction-form-button"
+                  class="bg-green-600 p-3 rounded-md font-semibold text-whiteSmoke shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)]"
+                ></button>
+              </div>
+              <img
+                id="t-transaction-confirm-svg"
+                class="w-12 h-12 invisible fill-blue-500"
+                src=""
+                alt="transaction tryCatch svg"
               />
-            </div>
-
-            <div id="t-transaction-btn" class="overflow-hidden max-h-0 transition-max-height">
-              <button class="bg-green-600 p-3 rounded-lg font-semibold text-white">Add transaction</button>
             </div>
           </div>
         </section>
