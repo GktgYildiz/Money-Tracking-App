@@ -29,6 +29,10 @@ $(document).ready(async function () {
         $('#as-table').append(`<tr id="as-account-${account.id}"></tr>`)
         $(`#as-account-${account.id}`).append(`<td>${account.id}</td>`, `<td>${account.username}</td>`, `<td>CA$0.00</td>`)
 
+        // append options to transactions section
+        $('#t-desired-account').append(`<option>${account.username}</option>`)
+        $('#t-target-account').append(`<option>${account.username}</option>`)
+
         // set tailwind styles
         setStyles()
 
@@ -38,6 +42,7 @@ $(document).ready(async function () {
         setTimeout(() => {
           $('#na-popup').fadeOut()
         }, 3000);
+
 
 
         $("#na-new-account").val(null); // Reset input
@@ -61,6 +66,9 @@ $(document).ready(async function () {
       $('#as-table').append(`<tr id="as-account-${element.id}"></tr>`);
       $(`#as-account-${element.id}`).append(`<td>${element.id}</td>`, `<td>${element.username}</td>`, `<td>${balance}</td>`);
       
+      if(balance[0] === '-') {
+        $(`#as-account-${element.id} td:last-child`).addClass('text-[#FF0000]')
+      }
     });
 
     setStyles()
@@ -94,8 +102,9 @@ function calcBalance(account) {
 // Add tailwind classes
 function setStyles() {
   $('#as-table-head th').addClass('px-4 py-2')
-  $('#as-table tr td:first-child').addClass('w-24 text-right px-4 py-2')
+  $('#as-table tr td:first-child').addClass('rounded-l-lg text-right px-4 py-2')
   $('#as-table tr td:nth-child(2)').addClass('px-4 py-2')
-  $('#as-table tr td:last-child').addClass('px-4 py-2 text-right')
-  $('#as-table tr:nth-child(odd)').addClass('bg-slate-200')
+  $('#as-table tr td:last-child').addClass('rounded-r-lg px-4 py-2 text-right')
+  $('#as-table tr:nth-child(odd)').addClass('bg-burntSienna bg-opacity-10')
+  $('#as-table tr:first-child').removeClass('bg-slate-200 bg-opacity-10')
 }
