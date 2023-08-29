@@ -8,6 +8,8 @@
     <!-- jQuery link -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" defer></script>
     <!-- JS *Sequence matters* -->
+    <!-- GSAP link -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script type="module" src="./js/common.js" defer></script>
     <script type="module" src="./js/index.js" defer></script>
     <script type="module" src="./js/components/Account.js" defer></script>
@@ -44,35 +46,91 @@
 
         <!-- Transaction | id prefix: 't-' -->
         <section id="sec-transaction">
-          <h1>Transaction</h1>
-          <!-- <form action="">
-          Transaction: Deposit
-          <input type="radio" />
-          Withdraw
-          <input type="radio" />
-          Transfer
-          <input type="radio" />
-          Account:
-          <select></select>
+          <h1 class="text-xl font-extrabold text-[#262634] tracking-wider">New Transaction</h1>
+          <div class="text-l font-medium">Transaction:</div>
+          <div class="flex flex-wrap justify-start items-center gap-4" id="t-method">
+            <div class="flex gap-2">
+              <p>Deposit</p>
+              <input name="transaction" type="radio" id="t-deposit-btn" value="Deposit" />
+            </div>
+            <div class="flex gap-2">
+              <p>Withdraw</p>
+              <input name="transaction" type="radio" id="t-withdraw-btn" value="Withdraw" />
+            </div>
+            <div class="flex gap-2">
+              <p>Transfer</p>
+              <input name="transaction" type="radio" id="t-transfer-btn" value="Transfer" />
+            </div>
+          </div>
 
-          From:
-          <select></select>
+          <div id="t-account-label" class="text-l font-medium overflow-hidden max-h-0 transition-max-height">
+            Account:
+          </div>
+          <div id="t-container" class="flex flex-wrap gap-4 overflow-hidden max-h-0 transition-max-height">
+            <div id="t-choose-account" class="overflow-hidden max-h-0 transition-max-height">
+              <p>From:</p>
+              <select name="base-account" id="t-desired-account" class="w-40 h-8 rounded-md">
+                <option value="-1" selected disabled>Choose Account</option>
+              </select>
+            </div>
 
-          To:
-          <select></select>
-          Category:
-          <select></select>
-          <input type="text" />
-          <button type="button">Add new category</button>
+            <div id="t-choose-target" class="overflow-hidden max-h-0 transition-max-height">
+              <p>To:</p>
+              <select name="target-account" id="t-target-account" class="w-40 h-8 rounded-md"></select>
+            </div>
 
-          Description
-          <input type="text" />
+            <div id="t-choose-category" class="overflow-hidden max-h-0 transition-max-height">
+              <p>Category:</p>
+              <select id="t-category-dropdown" class="w-40 h-8 rounded-md mb-2"></select>
+              <div id="t-add-category" class="flex flex-col items-center gap-y-2">
+                <div class="flex h-auto w-8">
+                  <img id="t-new-category-icon" src="./images/svg/addCategory.svg" alt="add category +" />
+                </div>
 
-          Amount:
-          <input type="number" />
+                <form class="flex flex-col items-center" id="t-new-category-form">
+                  <input
+                    class="p-3 rounded-lg w-40"
+                    type="text"
+                    id="t-new-category"
+                    name="newCategory"
+                    placeholder="New Category"
+                  />
+                  <button class="bg-green-600 p-1 rounded-lg text-white my-2 w-40 h-8 text-base" type="submit">
+                    Add new category
+                  </button>
+                </form>
+              </div>
+            </div>
 
-          <button>Add transaction</button>
-        </form> -->
+            <div id="t-add-description" class="overflow-hidden max-h-0 transition-max-height">
+              <p>Description</p>
+              <textarea
+                id="t-description-textarea"
+                rows="10"
+                class="w-40 rounded-md text-xs resize-none"
+                placeholder="Write your description here..."
+                maxlength="240"
+              ></textarea>
+            </div>
+
+            <div id="t-add-amount" class="overflow-hidden max-h-0 transition-max-height">
+              <p>Amount:</p>
+              <input
+                class="indent-2"
+                type="text"
+                name="currency-field"
+                id="t-amound-input"
+                pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
+                value=""
+                data-type="currency"
+                placeholder="$ 1,000,000.00"
+              />
+            </div>
+
+            <div id="t-transaction-btn" class="overflow-hidden max-h-0 transition-max-height">
+              <button class="bg-green-600 p-3 rounded-lg font-semibold text-white">Add transaction</button>
+            </div>
+          </div>
         </section>
 
         <!-- Accounts Summary | id prefix: 'as-' -->
