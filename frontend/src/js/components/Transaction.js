@@ -151,7 +151,7 @@ $(document).ready(async function () {
     // transfer button click handlers
     //==========================================
 
-    $("#t-transaction-btn").on("click", async function () {
+    $("#t-transaction-form-button").on("click", async function () {
       // Get input values
       const transactionType = $("input[name='transaction']:checked").val();
       const fromAccountId = parseInt($("#t-desired-account").val(), 10);
@@ -245,6 +245,7 @@ $(document).ready(async function () {
     //target elements on global scope
     // container of input elements
     const tContainer = $("#t-container");
+    const tAccountLabel = $("#t-account-label");
 
     //From account
     const tChooseAccount = $("#t-choose-account");
@@ -270,6 +271,61 @@ $(document).ready(async function () {
     const tTransactionButton = $("#t-transaction-btn");
     const tTransactionFormButton = $("#t-transaction-form-button");
 
+    // transaction headline svg button for new transaction
+    const svgContainer = $("#t-svg-container");
+    const tMethodDiv = $("#t-method");
+    const tTransactionHeadline = $("#t-transaction-headline");
+    const svg = $("#t-new-transaction-svg");
+
+    let isOpen = false;
+
+    svgContainer.on("click", function () {
+      tDesiredAccount.val("-1");
+      tCategoryDropdown.val("-1");
+      tTargetAccount.val("-1");
+      tAmountInput.val("");
+      tAddDescriptionText.val("");
+      tAccountLabel.addClass("invisible");
+      tChooseAccount.addClass("invisible");
+      tChooseTarget.addClass("invisible");
+      tChooseCategory.addClass("invisible");
+      tAddDescription.addClass("invisible");
+      tAmount.addClass("invisible");
+      tTransactionButton.addClass("invisible");
+      isOpen = !isOpen;
+      if (isOpen) {
+        tMethodDiv.removeClass("invisible");
+        tTransactionHeadline.removeClass("invisible");
+
+        gsap.to(svg, { rotation: 45, fill: "red" });
+      } else {
+        tMethodDiv.addClass("invisible");
+        tTransactionHeadline.addClass("invisible");
+        gsap.to(svg, { rotation: 0, fill: "green" });
+      }
+    });
+
+    // make transaction type buttons larger on hover
+    const transactions = ["Transfer", "Withdraw", "Deposit"];
+
+    transactions.forEach((transaction) => {
+      const labelId = `#t-${transaction.toLowerCase()}-label`;
+      const label = $(labelId);
+
+      let tween = gsap.to(label, {
+        scale: 1.1,
+        ease: "none",
+        paused: true,
+      });
+
+      label.on("mouseenter", () => {
+        gsap.to(tween, { duration: 1.3, time: tween.duration(), ease: "elastic.out(0.8, 0.3)" });
+      });
+      label.on("mouseleave", () => {
+        gsap.to(tween, { duration: 0.1, time: 0, ease: "none", overwrite: true });
+      });
+    });
+
     //add event handler for transaction type change
     $("input[name='transaction']").on("change", function () {
       // type of transfer
@@ -293,6 +349,26 @@ $(document).ready(async function () {
 
       gsap.set(tChooseAccount, { opacity: 0, height: 0 });
       gsap.to(tChooseAccount, { opacity: 1, height: "auto", duration: 1, ease: "power2.out" });
+
+      const transactions = ["Transfer", "Withdraw", "Deposit"];
+
+      transactions.forEach((transaction) => {
+        const labelId = `#t-${transaction.toLowerCase()}-label`;
+        const label = $(labelId);
+
+        if (selectedValue === transaction) {
+          label.removeClass("bg-deepBlue");
+          tAccountLabel.removeClass("invisible");
+          label.addClass("bg-green-600");
+          label.addClass("border-2");
+          label.addClass("border-whiteSmoke");
+        } else {
+          label.removeClass("bg-green-600");
+          label.removeClass("border-2");
+          label.removeClass("border-whiteSmoke");
+          label.addClass("bg-deepBlue");
+        }
+      });
     });
 
     //add event handler for "From Account"

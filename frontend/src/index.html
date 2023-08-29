@@ -20,7 +20,7 @@
 
   <body class="bg-slate-100 text-[#3F4A5A]">
     <header class="flex justify-center items-center bg-green-800">
-      <div class="py-4 text-2xl font-extrabold text-white">My Tracker</div>
+      <div class="py-4 text-2xl font-extrabold text-whiteSmoke">My Tracker</div>
     </header>
     <div class="container mx-auto h-screen grid grid-cols-1 mt-3">
       <main class="container mx-auto h-screen grid grid-cols-1">
@@ -31,7 +31,7 @@
             <form class="flex flex-wrap justify-start items-center gap-4" id="na-account-form">
               <label class="font-bold" for="newAccount">New Account:</label>
               <input class="p-3 rounded-lg" type="text" id="na-new-account" name="newAccount" placeholder="Mario" />
-              <button class="bg-green-600 p-3 rounded-lg font-semibold text-white" type="submit">Create</button>
+              <button class="bg-green-600 p-3 rounded-lg font-semibold text-whiteSmoke" type="submit">Create</button>
             </form>
           </div>
           <div class="p-2 font-bold text-green-600" id="na-result"></div>
@@ -46,34 +46,93 @@
 
         <!-- Transaction | id prefix: 't-' -->
         <section id="sec-transaction">
-          <h1 class="text-xl font-extrabold text-[#262634] tracking-wider">New Transaction</h1>
+          <h1 class="flex flex-row gap-2 text-xl font-extrabold text-deepBlue tracking-wider">
+            New Transaction
+            <span id="t-svg-container" class="cursor-pointer">
+              <svg
+                id="t-new-transaction-svg"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px"
+                y="0px"
+                viewBox="0 0 256 256"
+                enable-background="new 0 0 256 256"
+                xml:space="preserve"
+                height="2rem"
+              >
+                <g>
+                  <g>
+                    <g>
+                      <g>
+                        <path
+                          d="M133.4 197.7L133.4 133.4 197.7 133.4 197.7 122.6 133.4 122.6 133.4 58.3 122.6 58.3 122.6 122.6 58.3 122.6 58.3 133.4 122.6 133.4 122.6 197.7 z"
+                        />
+                        <path
+                          d="M246,128c0-65.2-52.8-118-118-118C62.8,10,10,62.8,10,128c0,65.2,52.8,118,118,118C193.2,246,246,193.2,246,128z M20.7,128c0-59.2,48-107.3,107.3-107.3c59.2,0,107.3,48,107.3,107.3c0,59.2-48,107.3-107.3,107.3C68.8,235.3,20.7,187.2,20.7,128z"
+                        />
+                      </g>
+                    </g>
+                    <g></g>
+                    <g></g>
+                    <g></g>
+                    <g></g>
+                    <g></g>
+                    <g></g>
+                    <g></g>
+                    <g></g>
+                    <g></g>
+                    <g></g>
+                    <g></g>
+                    <g></g>
+                    <g></g>
+                    <g></g>
+                    <g></g>
+                  </g>
+                </g>
+              </svg>
+            </span>
+          </h1>
           <div>
-            <div class="text-l font-medium">Transaction:</div>
+            <div id="t-transaction-headline" class="invisible text-l font-medium">Transaction:</div>
             <div
-              class="inline-flex flex-wrap justify-evenly items-center gap-4 bg-red-400 text-neutral-100 rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] w-75 h-15 px-3 py-2"
+              class="inline-flex invisible flex-wrap justify-evenly items-center gap-4 bg-burntSienna text-neutral-100 rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] w-100 h-20 px-3 py-2"
               id="t-method"
             >
-              <div class="flex gap-2">
-                <p>Deposit</p>
-                <input name="transaction" type="radio" id="t-deposit-btn" value="Deposit" />
+              <div
+                class="flex flex-row gap-2 p-2 bg-deepBlue rounded-md shadow-[0px_3px_1px_rgba(38,_38,_38,_1),_0_3px_5px_rgba(38,_38,_30,_1)]"
+                id="t-deposit-label"
+              >
+                <label for="t-deposit-btn" class="flex flex-row gap-3"
+                  ><span>Deposit</span> <img src="./images/svg/depositSvg.svg" class="w-6" alt="Deposit"
+                /></label>
+                <input name="transaction" type="radio" id="t-deposit-btn" value="Deposit" class="hidden" />
               </div>
-              <div class="flex gap-2">
-                <p>Withdraw</p>
-                <input name="transaction" type="radio" id="t-withdraw-btn" value="Withdraw" />
+              <div
+                class="flex flex-row gap-2 p-2 bg-deepBlue rounded-md shadow-[0px_3px_1px_rgba(38,_38,_38,_1),_0_3px_5px_rgba(38,_38,_30,_1)]"
+                id="t-withdraw-label"
+              >
+                <label for="t-withdraw-btn" class="flex flex-row gap-3"
+                  ><span>Withdraw</span> <img src="./images/svg/withdrawSvg.svg" class="w-5" alt="Deposit"
+                /></label>
+                <input name="transaction" type="radio" id="t-withdraw-btn" value="Withdraw" class="hidden" />
               </div>
-              <div class="flex gap-2">
-                <p>Transfer</p>
-                <input name="transaction" type="radio" id="t-transfer-btn" value="Transfer" />
+              <div
+                class="flex flex-row gap-2 p-2 bg-deepBlue rounded-md shadow-[0px_3px_1px_rgba(38,_38,_38,_1),_0_3px_5px_rgba(38,_38,_30,_1)]"
+                id="t-transfer-label"
+              >
+                <label for="t-transfer-btn" class="flex flex-row gap-3"
+                  ><span>Transfer</span> <img src="./images/svg/transferSvg.svg" class="w-5" alt="Deposit"
+                /></label>
+                <input name="transaction" type="radio" id="t-transfer-btn" value="Transfer" class="hidden" />
               </div>
             </div>
 
-            <!-- <div id="t-account-label" class="text-l font-medium overflow-hidden max-h-0 transition-max-height mt-2">
-              Account:
-            </div> -->
-            <div id="t-container" class="flex flex-wrap gap-4 mt-4">
+            <div id="t-account-label" class="invisible text-l font-medium mt-5">Account:</div>
+            <div id="t-container" class="flex flex-wrap gap-4 mt-3">
               <div
                 id="t-choose-account"
-                class="invisible rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-red-400"
+                class="invisible rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-burntSienna"
               >
                 <p>From:</p>
                 <select name="base-account" id="t-desired-account" class="w-40 h-8 rounded-md">
@@ -83,7 +142,7 @@
 
               <div
                 id="t-choose-target"
-                class="invisible rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-red-400"
+                class="invisible rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-burntSienna"
               >
                 <p>To:</p>
                 <select name="target-account" id="t-target-account" class="w-40 h-8 rounded-md"></select>
@@ -91,7 +150,7 @@
 
               <div
                 id="t-choose-category"
-                class="invisible rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-red-400"
+                class="invisible rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-burntSienna"
               >
                 <p>Category:</p>
                 <select id="t-category-dropdown" class="w-40 h-8 rounded-md mb-2"></select>
@@ -109,7 +168,7 @@
                         name="newCategory"
                         placeholder="New Category"
                       />
-                      <button class="bg-green-600 p-1 rounded-lg text-white my-2 w-40 h-8 text-base" type="submit">
+                      <button class="bg-green-600 p-1 rounded-lg text-whiteSmoke my-2 w-40 h-8 text-base" type="submit">
                         Add new category
                       </button>
                     </form>
@@ -119,13 +178,13 @@
 
               <div
                 id="t-add-description"
-                class="invisible rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-red-400"
+                class="invisible rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-burntSienna"
               >
                 <p>Description</p>
                 <textarea
                   id="t-description-textarea"
-                  rows="5"
-                  class="w-40 rounded-md text-xs resize-none"
+                  rows="7"
+                  class="w-40 rounded-md text-xs resize-none p-1"
                   placeholder="Write your description here..."
                   maxlength="140"
                 ></textarea>
@@ -133,11 +192,11 @@
 
               <div
                 id="t-add-amount"
-                class="invisible rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-red-400"
+                class="invisible rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-burntSienna"
               >
                 <p>Amount:</p>
                 <input
-                  class="indent-2"
+                  class="indent-2 rounded-lg w-40 h-8"
                   type="text"
                   name="currency-field"
                   id="t-amound-input"
@@ -151,7 +210,7 @@
               <div id="t-transaction-btn" class="invisible">
                 <button
                   id="t-transaction-form-button"
-                  class="bg-green-600 p-3 rounded-md font-semibold text-white shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)]"
+                  class="bg-green-600 p-3 rounded-md font-semibold text-whiteSmoke shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)]"
                 ></button>
               </div>
               <img
