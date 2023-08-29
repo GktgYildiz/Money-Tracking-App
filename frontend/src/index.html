@@ -33,6 +33,13 @@
             </form>
           </div>
           <div class="p-2 font-bold text-green-600" id="na-result"></div>
+          <div
+            id="na-popup"
+            style="display: none"
+            class="w-fit bg-[#30b830] text-white font-bold p-4 rounded-md shadow-md absolute top-16 left-1/2 -translate-x-1/2"
+          >
+            <p>Account has been created!</p>
+          </div>
         </section>
 
         <!-- Transaction | id prefix: 't-' -->
@@ -69,15 +76,15 @@
         </section>
 
         <!-- Accounts Summary | id prefix: 'as-' -->
-        <section id="sec-account-summary">
+        <section id="sec-account-summary" class="border-2">
           <h1>Account Summary</h1>
-          <!-- <table>
-          <tr>
-            <th>Id</th>
-            <th>Username</th>
-            <th>Balance</th>
-          </tr>
-        </table> -->
+          <table id="as-table" class="table-auto">
+            <tr id="as-table-head" class="bg-slate-300">
+              <th class="w-20 text-right px-4 py-2">Id</th>
+              <th class="px-4 py-2">Username</th>
+              <th class="text-right px-4 py-2" class="">Balance</th>
+            </tr>
+          </table>
         </section>
 
         <!-- Transaction History | id prefix: 'th-' -->
