@@ -267,11 +267,47 @@ $(document).ready(async function () {
     const tAmount = $("#t-add-amount");
     const tAmountInput = $("#t-amound-input");
 
-    //transaction button
+    //Transaction button
     const tTransactionButton = $("#t-transaction-btn");
     const tTransactionFormButton = $("#t-transaction-form-button");
 
-    // transaction headline svg button for new transaction
+    // Get the "Account" list item by its ID
+    const accountLink = $("#account-link");
+    const transactionLink = $("#transaction-link");
+    const summaryLink = $("#summary-link");
+    const historyLink = $("#history-link");
+
+    // Get the target section by its ID
+    const secNewAccount = $("#sec-new-account");
+    const secNewTransaction = $("#sec-transaction");
+    const secAccountSummary = $("#sec-account-summary");
+    const secTransactionHistory = $("#sec-transaction-history");
+
+    // Click event handler for "Account" list item
+    accountLink.click(function () {
+      secNewAccount[0].scrollIntoView({ behavior: "smooth" });
+      secNewAccount.focus();
+    });
+
+    // Click event handler for "Transaction" list item
+    transactionLink.click(function () {
+      secNewTransaction[0].scrollIntoView({ behavior: "smooth" });
+      secNewTransaction.focus();
+    });
+
+    // Click event handler for "Summary" list item
+    summaryLink.click(function () {
+      secAccountSummary[0].scrollIntoView({ behavior: "smooth" });
+      secAccountSummary.focus();
+    });
+
+    // Click event handler for "History" list item
+    historyLink.click(function () {
+      secTransactionHistory[0].scrollIntoView({ behavior: "smooth" });
+      secTransactionHistory.focus();
+    });
+
+    // new transaction headline's svg button
     const svgContainer = $("#t-svg-container");
     const tMethodDiv = $("#t-method");
     const tTransactionHeadline = $("#t-transaction-headline");
