@@ -29,21 +29,16 @@ $(document).ready(async function () {
         $('#as-table').append(`<tr id="as-account-${account.id}"></tr>`)
         $(`#as-account-${account.id}`).append(`<td>${account.id}</td>`, `<td>${account.username}</td>`, `<td>CA$0.00</td>`)
 
-        // append options to transactions section
-        $('#t-desired-account').append(`<option>${account.username}</option>`)
-        $('#t-target-account').append(`<option>${account.username}</option>`)
-
         // set tailwind styles
         setStyles()
-
+         
         // account created popup
         $('#na-popup p').text(`Account "${account.username}" has been created!`)
         $('#na-popup').fadeIn()
         setTimeout(() => {
           $('#na-popup').fadeOut()
         }, 3000);
-
-
+        
 
         $("#na-new-account").val(null); // Reset input
         
