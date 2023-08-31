@@ -26,15 +26,16 @@
 
   <body class="bg-slate-100 text-[#3F4A5A]">
     <div
-      id="login-popup"
+      id="global-popup"
       style="display: none"
-      class="w-fit bg-[#30b830] text-white font-bold p-4 rounded-md shadow-md absolute top-16 left-1/2 -translate-x-1/2"
+      class="w-fit text-white font-bold p-4 rounded-md shadow-md fixed top-10 left-1/2 -translate-x-1/2"
     >
-      <p>Welcome!</p>
+      <p></p>
     </div>
     <header class="flex justify-around items-center py-4 font-lora">
       <div class="py-4 w-40"><img src="./images/Logo.png" alt="logo" /></div>
-      <div class="py-4 text-xl text-deepBlue">
+      <!-- Navigation -->
+      <div class="hidden lg:block py-4 text-xl text-deepBlue">
         <ul class="flex flex-row justify-between list-none gap-x-14 items-center">
           <li id="account-link" class="hover:text-burntSienna cursor-pointer transition-al duration-300">Account</li>
           <li id="transaction-link" class="hover:text-burntSienna cursor-pointer transition-al duration-300">
@@ -44,6 +45,7 @@
           <li id="history-link" class="hover:text-burntSienna cursor-pointer transition-al duration-300">History</li>
         </ul>
       </div>
+      <!-- User Account -->
       <div class="flex flex-row items-center py-4 text-base font-libre font-semibold text-deepBlue">
         <img src="" alt="user pp" class="rounded-full w-14" id="nav-userimg" />
         <div class="px-4 gap-x-4 leading-none">
@@ -52,25 +54,17 @@
         </div>
       </div>
     </header>
-    <div class="container mx-auto h-screen grid grid-cols-1 mt-3">
+    <div class="container mx-auto px-5 h-screen grid grid-cols-1 mt-3">
       <main class="container mx-auto h-screen grid grid-cols-1">
         <!-- New Account | id prefix: 'na-' -->
         <section id="sec-new-account">
-          <div class="space-y-1">
+          <div class="space-y-1 min-h-[150px]">
             <h1 class="text-xl font-extrabold">Create your account</h1>
             <form class="flex flex-wrap justify-start items-center gap-4" id="na-account-form">
               <label class="font-bold" for="newAccount">New Account:</label>
               <input class="p-3 rounded-lg" type="text" id="na-new-account" name="newAccount" placeholder="Mario" />
               <button class="bg-green-600 p-3 rounded-lg font-semibold text-whiteSmoke" type="submit">Create</button>
             </form>
-          </div>
-          <div class="p-2 font-bold text-green-600" id="na-result"></div>
-          <div
-            id="na-popup"
-            style="display: none"
-            class="w-fit bg-[#30b830] text-white font-bold p-4 rounded-md shadow-md absolute top-16 left-1/2 -translate-x-1/2"
-          >
-            <p>Account has been created!</p>
           </div>
         </section>
 
@@ -159,7 +153,7 @@
             </div>
 
             <div id="t-account-label" class="invisible text-l font-medium mt-5">Account:</div>
-            <div id="t-container" class="flex flex-nowrap gap-4 mt-2 mb-5">
+            <div id="t-container" class="flex flex-wrap gap-4 mt-2 mb-5">
               <div
                 id="t-validation"
                 class="invisible rounded-md px-3 py-2 bg-deepBlue text-xl w-55 shadow-[0px_10px_1px_rgba(255,_38,_38,_1),_0_10px_20px_rgba(255,_38,_30,_1)]"

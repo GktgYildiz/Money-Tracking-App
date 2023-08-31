@@ -1,3 +1,4 @@
+import { displayPopup } from "../common.js";
 import { apiClient } from "../index.js";
 
 $(document).ready(async function () {
@@ -212,6 +213,9 @@ $(document).ready(async function () {
           .removeClass("invisible");
         gsap.fromTo(successIcon, { opacity: 0 }, { opacity: 1, duration: 0.5 });
 
+        const transactionSuccessMessage = "Transaction completed successfully";
+        displayPopup(transactionSuccessMessage, "success");
+
         // Hide the success SVG icon after 3 seconds with GSAP animation
         setTimeout(() => {
           gsap.to(successIcon, {
@@ -235,6 +239,10 @@ $(document).ready(async function () {
           .attr("src", "./images/svg/errorCategory.svg")
           .removeClass("invisible");
         gsap.fromTo(errorIcon, { opacity: 0 }, { opacity: 1, duration: 0.5 });
+
+        // Error message popup
+        const transactionErrorMessage = "Transaction failed 😭";
+        displayPopup(transactionErrorMessage, "error");
 
         // Hide the error SVG icon after 3 seconds with GSAP animation
         setTimeout(() => {
