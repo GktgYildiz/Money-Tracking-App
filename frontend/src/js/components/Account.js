@@ -10,9 +10,24 @@ $(document).ready(async function () {
       apiClient.fetchAccounts(),
       apiClient.fetchTransactions(),
     ]);
-    console.log('fetched account', fetchedAccounts);
+    // console.log('fetched account', fetchedAccounts);
     // console.log('fetched transactions', fetchedTransactions);
     // console.log(fetchedCategories, fetchedAccounts, fetchedTransactions);
+
+    // ==========================
+    // Login Popup and Navigation bar
+    // ==========================
+    let username = localStorage.username
+    username = username.charAt(0).toUpperCase() + username.slice(1);
+    $('#nav-username').text(username)
+    $('#nav-userimg').attr('src', `images/${username}.png`)
+
+    $('#login-popup p').text(`You are logged in as ${username}!`)
+    $('#login-popup').fadeIn()
+    setTimeout(() => {
+      $('#login-popup').fadeOut()
+    }, 3000);
+
 
     // ==========================
     // Create Account

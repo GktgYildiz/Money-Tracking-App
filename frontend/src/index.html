@@ -25,6 +25,13 @@
   </head>
 
   <body class="bg-slate-100 text-[#3F4A5A]">
+    <div
+      id="login-popup"
+      style="display: none"
+      class="w-fit bg-[#30b830] text-white font-bold p-4 rounded-md shadow-md absolute top-16 left-1/2 -translate-x-1/2"
+    >
+      <p>Welcome!</p>
+    </div>
     <header class="flex justify-around items-center py-4 font-lora">
       <div class="py-4 w-40"><img src="./images/Logo.png" alt="logo" /></div>
       <div class="py-4 text-xl text-deepBlue">
@@ -36,10 +43,10 @@
         </ul>
       </div>
       <div class="flex flex-row items-center py-4 text-base font-libre font-semibold text-deepBlue">
-        <img src="https://i.pravatar.cc/48?u=1" alt="user pp" class="rounded-full" />
+        <img src="" alt="user pp" class="rounded-full w-14" id="nav-userimg" />
         <div class="px-4 gap-x-4 leading-none">
           <p>Welcome,</p>
-          <p>Username</p>
+          <p id="nav-username">Username</p>
         </div>
       </div>
     </header>
