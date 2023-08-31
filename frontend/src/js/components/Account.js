@@ -10,9 +10,24 @@ $(document).ready(async function () {
       apiClient.fetchAccounts(),
       apiClient.fetchTransactions(),
     ]);
-    console.log('fetched account', fetchedAccounts);
+    // console.log('fetched account', fetchedAccounts);
     // console.log('fetched transactions', fetchedTransactions);
     // console.log(fetchedCategories, fetchedAccounts, fetchedTransactions);
+
+    // ==========================
+    // Login Popup and Navigation bar
+    // ==========================
+    let username = localStorage.username
+    username = username.charAt(0).toUpperCase() + username.slice(1);
+    $('#nav-username').text(username)
+    $('#nav-userimg').attr('src', `images/${username}.png`)
+
+    $('#login-popup p').text(`You are logged in as ${username}!`)
+    $('#login-popup').fadeIn()
+    setTimeout(() => {
+      $('#login-popup').fadeOut()
+    }, 3000);
+
 
     // ==========================
     // Create Account
@@ -29,21 +44,16 @@ $(document).ready(async function () {
         $('#as-table').append(`<tr id="as-account-${account.id}"></tr>`)
         $(`#as-account-${account.id}`).append(`<td>${account.id}</td>`, `<td>${account.username}</td>`, `<td>CA$0.00</td>`)
 
-        // append options to transactions section
-        $('#t-desired-account').append(`<option>${account.username}</option>`)
-        $('#t-target-account').append(`<option>${account.username}</option>`)
-
         // set tailwind styles
         setStyles()
-
+         
         // account created popup
         $('#na-popup p').text(`Account "${account.username}" has been created!`)
         $('#na-popup').fadeIn()
         setTimeout(() => {
           $('#na-popup').fadeOut()
         }, 3000);
-
-
+        
 
         $("#na-new-account").val(null); // Reset input
         

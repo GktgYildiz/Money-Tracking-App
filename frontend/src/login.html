@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Banking App</title>
+    <!-- jQuery link -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" defer></script>
+    <!-- JS *Sequence matters* -->
+    <!-- GSAP link -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script type="module" src="./js/common.js" defer></script>
+    <script type="module" src="./js/index.js" defer></script>
+    <script type="module" src="./js/components/Account.js" defer></script>
+    <script type="module" src="./js/components/Transaction.js" defer></script>
+    <script type="module" src="./js/components/TransactionHistory.js" defer></script>
+    <script type="module" src="./js/components/Login.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lora:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="bg-slate-100 text-[#3F4A5A]">
+    <div id="login-container" class="w-96 h-fit bg-white shadow-lg absolute inset-0 m-auto p-6 pt-12 rounded-xl">
+      <h1 class="w-1/2 m-auto">
+        <img src="images/Logo.png" alt="Verbank Logo" class="w-full" />
+      </h1>
+      <form action="">
+        <div id="input-username" class="mt-8">
+          <label for="loginusername">Username</label>
+          <input type="text" id="loginusername" class="bg-slate-100 block w-full p-2" />
+        </div>
+        <div id="input-password" class="mt-2 relative">
+          <label for="password">Password</label>
+          <input type="password" id="password" class="bg-slate-100 block w-full p-2" />
+          <img
+            src="images/visibility.svg"
+            alt="visibility icon"
+            id="password-visible-icon"
+            class="block absolute right-2 bottom-2 cursor-pointer opacity-50"
+          />
+        </div>
+        <a
+          id="login-btn"
+          type="submit"
+          href=""
+          class="block w-full mt-8 text-center bg-green-600 p-3 shadow-md rounded-lg font-semibold text-whiteSmoke hover:shadow-none hover:translate-y-0.5 transition-all"
+        >
+          LOGIN
+        </a>
+        <p id="incorrect-msg" class="text-red-600 mt-2 text-center opacity-0 transition-all">
+          Incorrect Username or Password
+        </p>
+      </form>
+    </div>
+  </body>
+</html>
