@@ -29,10 +29,12 @@
       <div class="py-4 w-40"><img src="./images/Logo.png" alt="logo" /></div>
       <div class="py-4 text-xl text-deepBlue">
         <ul class="flex flex-row justify-between list-none gap-x-14 items-center">
-          <li id="account-link" class="hover:text-burntSienna cursor-pointer">Account</li>
-          <li id="transaction-link" class="hover:text-burntSienna cursor-pointer">Transaction</li>
-          <li id="summary-link" class="hover:text-burntSienna cursor-pointer">Summary</li>
-          <li id="history-link" class="hover:text-burntSienna cursor-pointer">History</li>
+          <li id="account-link" class="hover:text-burntSienna cursor-pointer transition-al duration-300">Account</li>
+          <li id="transaction-link" class="hover:text-burntSienna cursor-pointer transition-al duration-300">
+            Transaction
+          </li>
+          <li id="summary-link" class="hover:text-burntSienna cursor-pointer transition-al duration-300">Summary</li>
+          <li id="history-link" class="hover:text-burntSienna cursor-pointer transition-al duration-300">History</li>
         </ul>
       </div>
       <div class="flex flex-row items-center py-4 text-base font-libre font-semibold text-deepBlue">
@@ -168,8 +170,12 @@
                 id="t-choose-account"
                 class="invisible rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-burntSienna"
               >
-                <p>From:</p>
-                <select name="base-account" id="t-desired-account" class="w-40 h-8 rounded-md">
+                <p class="text-lg font-lora font-bold tracking-wide">From:</p>
+                <select
+                  name="base-account"
+                  id="t-desired-account"
+                  class="w-40 h-8 rounded-md border-b-4 border-deepBlue tracking-wide text-deepBlue font-libre mt-2"
+                >
                   <option value="-1" selected disabled>Choose Account</option>
                 </select>
                 <div class="flex justify-center mt-10 opacity-50">
@@ -181,8 +187,12 @@
                 id="t-choose-target"
                 class="invisible rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-burntSienna"
               >
-                <p>To:</p>
-                <select name="target-account" id="t-target-account" class="w-40 h-8 rounded-md"></select>
+                <p class="text-lg font-lora font-bold tracking-wide">To:</p>
+                <select
+                  name="target-account"
+                  id="t-target-account"
+                  class="w-40 h-8 rounded-md border-b-4 border-deepBlue tracking-wide text-deepBlue font-libre mt-2"
+                ></select>
                 <div class="flex justify-center mt-10 opacity-50">
                   <img src="./images/svg/validation/targetSection.svg" alt="amount" />
                 </div>
@@ -192,8 +202,11 @@
                 id="t-choose-category"
                 class="invisible rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-burntSienna"
               >
-                <p>Category:</p>
-                <select id="t-category-dropdown" class="w-40 h-8 rounded-md mb-2"></select>
+                <p class="text-lg font-lora font-bold tracking-wide">Category:</p>
+                <select
+                  id="t-category-dropdown"
+                  class="w-40 h-8 rounded-md mb-2 border-b-4 border-deepBlue tracking-normal text-deepBlue font-libre mt-2"
+                ></select>
                 <div id="t-add-category" class="flex flex-col items-center gap-y-2">
                   <div class="flex h-auto w-8">
                     <img id="t-new-category-icon" src="./images/svg/addCategory.svg" alt="add category +" />
@@ -220,11 +233,11 @@
                 id="t-add-description"
                 class="invisible rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-burntSienna"
               >
-                <p>Description</p>
+                <p class="text-lg font-lora font-bold tracking-wide">Description:</p>
                 <textarea
                   id="t-description-textarea"
                   rows="7"
-                  class="w-40 rounded-md text-xs resize-none p-1"
+                  class="w-40 rounded-md text-xs resize-none p-1 border-b-4 border-deepBlue tracking-wide text-deepBlue font-libre mt-2"
                   placeholder="Write your description here..."
                   maxlength="140"
                 ></textarea>
@@ -234,9 +247,9 @@
                 id="t-add-amount"
                 class="invisible flex flex-col rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-burntSienna"
               >
-                <p>Amount:</p>
+                <p class="text-lg font-lora font-bold tracking-wide">Amount:</p>
                 <input
-                  class="indent-2 rounded-lg w-40 h-8"
+                  class="indent-2 rounded-lg w-40 h-8 border-b-4 border-deepBlue tracking-wide text-deepBlue font-libre mt-2"
                   type="text"
                   name="currency-field"
                   id="t-amound-input"
@@ -255,13 +268,13 @@
                   id="t-transaction-form-button"
                   class="bg-green-600 p-3 rounded-md font-semibold text-whiteSmoke shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)]"
                 ></button>
+                <img
+                  id="t-transaction-confirm-svg"
+                  class="w-12 h-12 invisible fill-blue-500 mt-4 left-6 relative"
+                  src=""
+                  alt="transaction tryCatch svg"
+                />
               </div>
-              <img
-                id="t-transaction-confirm-svg"
-                class="w-12 h-12 invisible fill-blue-500"
-                src=""
-                alt="transaction tryCatch svg"
-              />
             </div>
           </div>
         </section>

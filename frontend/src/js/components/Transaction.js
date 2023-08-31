@@ -222,6 +222,11 @@ $(document).ready(async function () {
             },
           });
         }, 2500);
+        tDesiredAccount.val("-1");
+        tCategoryDropdown.val("-1");
+        tTargetAccount.val("-1");
+        tAmountInput.val("");
+        tAddDescriptionText.val("");
       } catch (error) {
         // Handle error, show an error message to the user.
         console.error("Transaction creation failed:", error);
@@ -241,12 +246,12 @@ $(document).ready(async function () {
             },
           });
         }, 2500);
+        tDesiredAccount.val("-1");
+        tCategoryDropdown.val("-1");
+        tTargetAccount.val("-1");
+        tAmountInput.val("");
+        tAddDescriptionText.val("");
       }
-
-      //===============PERSONAL NOTE==========
-      // put error message for validation result fail
-      // put confirm message for validation result success
-      //show error message for validation result
     });
 
     //==========================================
@@ -397,7 +402,7 @@ $(document).ready(async function () {
       }
       $("#t-main-message").removeClass("opacity-25").next().removeClass("opacity-25").addClass("opacity-50");
     });
-    // + (90 - index * 15)
+
     //=======================
     // navbar animation
     //=======================
