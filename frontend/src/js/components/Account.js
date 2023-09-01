@@ -11,20 +11,36 @@ $(document).ready(async function () {
       apiClient.fetchAccounts(),
       apiClient.fetchTransactions(),
     ]);
-    // console.log('fetched account', fetchedAccounts);
-    // console.log('fetched transactions', fetchedTransactions);
-    // console.log(fetchedCategories, fetchedAccounts, fetchedTransactions);
 
     // ==========================
     // Login Popup and Navigation bar
     // ==========================
     let username = localStorage.username;
-    username = username.charAt(0).toUpperCase() + username.slice(1);
-    $("#nav-username").text(username);
-    $("#nav-userimg").attr("src", `images/${username}.png`);
+    if (username) {
+      username = username.charAt(0).toUpperCase() + username.slice(1);
+      $("#nav-username").text(username);
+      $("#nav-userimg").attr("src", `images/${username}.png`);
+      const loginSuccessMessage = `You are logged in as ${username}!`;
+      displayPopup(loginSuccessMessage, "success");
+    } else {
+      $("#nav-username").text("Guest");
+      $("#nav-userimg").attr("src", `images/DefaultProfileIcon.png`);
+    }
 
-    const loginSuccessMessage = `You are logged in as ${username}!`;
-    displayPopup(loginSuccessMessage, "success");
+    // ==========================
+    // Logout
+    // ==========================
+    $("#nav-user-account").on("click", function () {
+      if (username) {
+        const willLogout = confirm("Do you want to log out?");
+        if (willLogout) {
+          localStorage.removeItem("username");
+          location.href = "/login.html";
+        }
+      } else {
+        location.href = "/login.html";
+      }
+    });
 
     // ==========================
     // Create Account
@@ -35,7 +51,6 @@ $(document).ready(async function () {
       const accountPayload = { newAccount: $("#na-new-account").val() };
       try {
         const account = await apiClient.createAccount(accountPayload);
-        // $("#na-result").text("Your account created!: " + JSON.stringify(account));
 
         // append the new account data to the account summery
         $("#as-table").append(`<tr id="as-account-${account.id}"></tr>`);
@@ -63,8 +78,6 @@ $(document).ready(async function () {
     // ==========================
     // Account Summary
     // ==========================
-    // Code here
-
     fetchedAccounts.forEach((element) => {
       // call calcBalance
       let balance = calcBalance(element);
