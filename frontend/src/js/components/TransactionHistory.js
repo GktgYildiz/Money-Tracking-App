@@ -87,14 +87,14 @@ $(document).ready(async function () {
 
       $("#th-table").append(`<tr id="th-tr-${transaction.id}"></tr>`);   
       $(`#th-tr-${transaction.id}`).append(
-        `<td>${transaction.accountId}</td>`,
-        `<td>${username}</td>`,
-        `<td>${transaction.type}</td>`,
-        `<td>${categoryName}</td>`,
-        `<td>${transaction.description}</td>`,
-        `<td>${transaction.amount}</td>`,
-        `<td>${accountIdFrom}</td>`,
-        `<td>${accountIdTo}</td>`,
+        `<td class="px-3">${transaction.accountId}</td>`,
+        `<td class="px-3">${username}</td>`,
+        `<td class="px-3">${transaction.type}</td>`,
+        `<td class="px-3">${categoryName}</td>`,
+        `<td class="px-3">${transaction.description}</td>`,
+        `<td class="px-3">${transaction.amount}</td>`,
+        `<td class="px-3">${accountIdFrom}</td>`,
+        `<td class="px-3">${accountIdTo}</td>`,
         )
     })
 
