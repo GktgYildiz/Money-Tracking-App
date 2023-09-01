@@ -11,6 +11,7 @@
     <!-- GSAP link -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script type="module" src="./js/common.js" defer></script>
+    <script type="module" src="./js/middleware.js" defer></script>
     <script type="module" src="./js/index.js" defer></script>
     <script type="module" src="./js/components/Account.js" defer></script>
     <script type="module" src="./js/components/Transaction.js" defer></script>
@@ -46,13 +47,16 @@
         </ul>
       </div>
       <!-- User Account -->
-      <div class="flex flex-row items-center py-4 text-base font-libre font-semibold text-deepBlue">
+      <button
+        id="nav-user-account"
+        class="flex flex-row items-center p-2 text-base rounded-lg font-libre font-semibold text-deepBlue hover:bg-slate-200 transition duration-200"
+      >
         <img src="" alt="user pp" class="rounded-full w-14" id="nav-userimg" />
         <div class="px-4 gap-x-4 leading-none">
           <p>Welcome,</p>
           <p id="nav-username">Username</p>
         </div>
-      </div>
+      </button>
     </header>
     <div class="container mx-auto px-5 h-screen grid grid-cols-1 mt-3">
       <main class="container mx-auto h-screen grid grid-cols-1">
@@ -298,22 +302,22 @@
         <section id="sec-transaction-history">
           <h1>Transaction History</h1>
           <ul></ul>
-        Filter by account:
-        <select id="th-select">
-          <option value="" id="th-select-default" selected>All the transactions</option>
-        </select>
-        <table id="th-table">
-          <tr>
-            <th id="th-id" class="px-2 border-2">Id</th>
-            <th id="th-username" class="px-2 border-2">Username</th>
-            <th id="th-transaction-type" class="px-2 border-2">Transaction Type</th>
-            <th id="th-category" class="px-2 border-2">Category</th>
-            <th id="th-description" class="px-2 border-2">Description</th>
-            <th id="th-amount" class="px- border-2">Amount</th>
-            <th id="th-from" class="px-2 border-2">From</th>
-            <th id="th-to" class="px-2 border-2">To</th>
-          </tr>
-        </table>
+          Filter by account:
+          <select id="th-select">
+            <option value="" id="th-select-default" selected>All the transactions</option>
+          </select>
+          <table id="th-table">
+            <tr>
+              <th id="th-id" class="px-2 border-2">Id</th>
+              <th id="th-username" class="px-2 border-2">Username</th>
+              <th id="th-transaction-type" class="px-2 border-2">Transaction Type</th>
+              <th id="th-category" class="px-2 border-2">Category</th>
+              <th id="th-description" class="px-2 border-2">Description</th>
+              <th id="th-amount" class="px- border-2">Amount</th>
+              <th id="th-from" class="px-2 border-2">From</th>
+              <th id="th-to" class="px-2 border-2">To</th>
+            </tr>
+          </table>
         </section>
       </main>
     </div>
