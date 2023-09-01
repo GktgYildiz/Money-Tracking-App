@@ -22,9 +22,6 @@ $(document).ready(async function () {
       $("#nav-userimg").attr("src", `images/${username}.png`);
       const loginSuccessMessage = `You are logged in as ${username}!`;
       displayPopup(loginSuccessMessage, "success");
-    } else {
-      $("#nav-username").text("Guest");
-      $("#nav-userimg").attr("src", `images/DefaultProfileIcon.png`);
     }
 
     // ==========================
