@@ -299,25 +299,27 @@
         </section>
 
         <!-- Transaction History | id prefix: 'th-' -->
-        <section id="sec-transaction-history">
-          <h1>Transaction History</h1>
+        <section class ="my-10" id="sec-transaction-history">
+          <h1 class="text-xl font-extrabold mb-4">Transaction History</h1>
           <ul></ul>
           Filter by account:
           <select id="th-select">
             <option value="" id="th-select-default" selected>All the transactions</option>
           </select>
-          <table id="th-table">
-            <tr>
-              <th id="th-id" class="px-2 border-2">Id</th>
-              <th id="th-username" class="px-2 border-2">Username</th>
-              <th id="th-transaction-type" class="px-2 border-2">Transaction Type</th>
-              <th id="th-category" class="px-2 border-2">Category</th>
-              <th id="th-description" class="px-2 border-2">Description</th>
-              <th id="th-amount" class="px- border-2">Amount</th>
-              <th id="th-from" class="px-2 border-2">From</th>
-              <th id="th-to" class="px-2 border-2">To</th>
+          <div class="w-full overflow-x-auto p-4 bg-white rounded-xl">
+          <table id="th-table" class="w-full min-w-[980px] table-auto text-left mt-2 mb-10 rounded-xl">
+            <tr class=" bg-burntSienna text-white rounded-full">
+              <th class="px-4 py-2" id="th-id">Id</th>
+              <th class="px-4 py-2" id="th-username">Username</th>
+              <th class="px-4 py-2" id="th-transaction-type">Transaction Type</th>
+              <th class="px-4 py-2" id="th-category">Category</th>
+              <th class="px-4 py-2" id="th-description">Description</th>
+              <th class="px-4 py-2" id="th-amount">Amount</th>
+              <th class="px-4 py-2" id="th-from">From</th>
+              <th class="px-4 py-2" id="th-to">To</th>
             </tr>
           </table>
+          </div>
         </section>
       </main>
     </div>
