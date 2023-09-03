@@ -121,9 +121,9 @@
               </svg>
             </span>
           </h1>
-          <div id="t-transaction-headline" class="invisible text-l font-medium mb-2">Transaction:</div>
+          <div id="t-transaction-headline" class="hidden text-l font-medium mb-2">Transaction:</div>
           <div
-            class="inline-flex invisible flex-wrap justify-evenly items-center gap-4 bg-burntSienna text-neutral-100 rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] w-100 h-20 px-3 py-2"
+            class="inline-flex hidden flex-wrap justify-evenly items-center gap-4 bg-burntSienna text-neutral-100 rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] w-100 h-20 px-3 py-2"
             id="t-method"
           >
             <div
@@ -155,11 +155,11 @@
             </div>
           </div>
 
-          <div id="t-account-label" class="invisible text-l font-medium mt-5">Account:</div>
-          <div id="t-container" class="flex flex-wrap gap-4 mt-2 mb-5">
+          <div id="t-account-label" class="hidden text-l font-medium mt-5">Account:</div>
+          <div id="t-container" class="flex flex-wrap gap-4 mt-2 mb-5 h-52">
             <div
               id="t-validation"
-              class="invisible rounded-md px-3 py-2 bg-deepBlue text-xl w-55 shadow-[0px_10px_1px_rgba(255,_38,_38,_1),_0_10px_20px_rgba(255,_38,_30,_1)]"
+              class="hidden rounded-md px-3 py-2 bg-deepBlue text-xl w-55 shadow-[0px_10px_1px_rgba(255,_38,_38,_1),_0_10px_20px_rgba(255,_38,_30,_1)]"
             >
               <div id="t-validation-steps" class="flex flex-col">
                 <div id="t-transaction-validation-typeSvg" class="flex w-40 relative justify-center items-center"></div>
@@ -169,7 +169,7 @@
             </div>
             <div
               id="t-choose-account"
-              class="invisible rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-burntSienna"
+              class="hidden rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-burntSienna"
             >
               <p class="text-lg font-lora font-bold tracking-wide">From:</p>
               <select
@@ -186,7 +186,7 @@
 
             <div
               id="t-choose-target"
-              class="invisible rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-burntSienna"
+              class="hidden rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-burntSienna"
             >
               <p class="text-lg font-lora font-bold tracking-wide">To:</p>
               <select
@@ -201,7 +201,7 @@
 
             <div
               id="t-choose-category"
-              class="invisible rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-burntSienna"
+              class="hidden rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-burntSienna"
             >
               <p class="text-lg font-lora font-bold tracking-wide">Category:</p>
               <select
@@ -214,7 +214,7 @@
                 </div>
 
                 <div class="flex flex-col items-center">
-                  <form class="invisible flex flex-col items-center" id="t-new-category-form">
+                  <form class="hidden flex flex-col items-center" id="t-new-category-form">
                     <input
                       class="p-3 rounded-lg w-40"
                       type="text"
@@ -232,7 +232,7 @@
 
             <div
               id="t-add-description"
-              class="invisible rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-burntSienna"
+              class="hidden rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-burntSienna"
             >
               <p class="text-lg font-lora font-bold tracking-wide">Description:</p>
               <textarea
@@ -246,7 +246,7 @@
 
             <div
               id="t-add-amount"
-              class="invisible flex flex-col rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-burntSienna"
+              class="hidden flex flex-col rounded-md shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)] px-3 py-2 bg-burntSienna"
             >
               <p class="text-lg font-lora font-bold tracking-wide">Amount:</p>
               <input
@@ -264,14 +264,14 @@
               </div>
             </div>
 
-            <div id="t-transaction-btn" class="invisible">
+            <div id="t-transaction-btn" class="hidden">
               <button
                 id="t-transaction-form-button"
                 class="bg-green-600 p-3 rounded-md font-semibold text-whiteSmoke shadow-[0px_10px_1px_rgba(38,_38,_38,_1),_0_10px_20px_rgba(38,_38,_30,_1)]"
               ></button>
               <img
                 id="t-transaction-confirm-svg"
-                class="w-12 h-12 invisible fill-blue-500 mt-4 left-6 relative"
+                class="w-12 h-12 hidden fill-blue-500 mt-4 left-6 relative"
                 src=""
                 alt="transaction tryCatch svg"
               />

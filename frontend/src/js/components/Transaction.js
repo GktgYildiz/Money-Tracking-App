@@ -73,7 +73,7 @@ $(document).ready(async function () {
           .next()
           .removeClass("opacity-25")
           .addClass("opacity-50");
-        tAddDescription.removeClass("invisible");
+        tAddDescription.removeClass("hidden");
         gsap.set(tAddDescription, { opacity: 0, height: 0 });
         gsap.to(tAddDescription, { opacity: 1, height: "auto", duration: 1, ease: "power2.out" });
 
@@ -210,7 +210,7 @@ $(document).ready(async function () {
         // Display the success SVG icon and apply GSAP animation
         const successIcon = $("#t-transaction-confirm-svg")
           .attr("src", "./images/svg/correctCategory.svg")
-          .removeClass("invisible");
+          .removeClass("hidden");
         gsap.fromTo(successIcon, { opacity: 0 }, { opacity: 1, duration: 0.5 });
 
         const transactionSuccessMessage = "Transaction completed successfully";
@@ -222,7 +222,7 @@ $(document).ready(async function () {
             opacity: 0,
             duration: 0.5,
             onComplete: function () {
-              successIcon.addClass("invisible"); // Add the invisible class after animation
+              successIcon.addClass("hidden"); // Add the hidden class after animation
             },
           });
         }, 2500);
@@ -237,7 +237,7 @@ $(document).ready(async function () {
         // Display the error SVG icon and apply GSAP animation
         const errorIcon = $("#t-transaction-confirm-svg")
           .attr("src", "./images/svg/errorCategory.svg")
-          .removeClass("invisible");
+          .removeClass("hidden");
         gsap.fromTo(errorIcon, { opacity: 0 }, { opacity: 1, duration: 0.5 });
 
         // Error message popup
@@ -250,7 +250,7 @@ $(document).ready(async function () {
             opacity: 0,
             duration: 0.5,
             onComplete: function () {
-              errorIcon.addClass("invisible"); // Add the invisible class after animation
+              errorIcon.addClass("hidden"); // Add the hidden class after animation
             },
           });
         }, 2500);
@@ -467,28 +467,28 @@ $(document).ready(async function () {
       tTargetAccount.val("-1");
       tAmountInput.val("");
       tAddDescriptionText.val("");
-      tAccountLabel.addClass("invisible");
-      tAccountLabel.addClass("invisible");
-      tChooseAccount.addClass("invisible");
-      tValidationContainer.addClass("invisible");
-      tChooseTarget.addClass("invisible");
-      tChooseCategory.addClass("invisible");
-      tAddDescription.addClass("invisible");
-      tAmount.addClass("invisible");
-      tTransactionButton.addClass("invisible");
+      tAccountLabel.addClass("hidden");
+      tAccountLabel.addClass("hidden");
+      tChooseAccount.addClass("hidden");
+      tValidationContainer.addClass("hidden");
+      tChooseTarget.addClass("hidden");
+      tChooseCategory.addClass("hidden");
+      tAddDescription.addClass("hidden");
+      tAmount.addClass("hidden");
+      tTransactionButton.addClass("hidden");
       isOpen = !isOpen;
       if (isOpen) {
-        tMethodDiv.removeClass("invisible");
+        tMethodDiv.removeClass("hidden");
         gsap.set(tMethodDiv, { opacity: 0, height: 0 });
         gsap.to(tMethodDiv, { opacity: 1, height: "auto", duration: 1, ease: "power2.out" });
-        tTransactionHeadline.removeClass("invisible");
+        tTransactionHeadline.removeClass("hidden");
         gsap.set(tTransactionHeadline, { opacity: 0, height: 0 });
         gsap.to(tTransactionHeadline, { opacity: 1, height: "auto", duration: 1, ease: "power2.out" });
 
         gsap.to(svg, { rotation: 45, fill: "red" });
       } else {
-        tMethodDiv.addClass("invisible");
-        tTransactionHeadline.addClass("invisible");
+        tMethodDiv.addClass("hidden");
+        tTransactionHeadline.addClass("hidden");
         gsap.to(svg, { rotation: 0, fill: "green" });
       }
     });
@@ -528,13 +528,13 @@ $(document).ready(async function () {
       tTargetAccount.val("-1");
       tAmountInput.val("");
       tAddDescriptionText.val("");
-      tChooseAccount.removeClass("invisible");
-      tValidationContainer.removeClass("invisible");
-      tChooseTarget.addClass("invisible");
-      tChooseCategory.addClass("invisible");
-      tAddDescription.addClass("invisible");
-      tAmount.addClass("invisible");
-      tTransactionButton.addClass("invisible");
+      tChooseAccount.removeClass("hidden");
+      tValidationContainer.removeClass("hidden");
+      tChooseTarget.addClass("hidden");
+      tChooseCategory.addClass("hidden");
+      tAddDescription.addClass("hidden");
+      tAmount.addClass("hidden");
+      tTransactionButton.addClass("hidden");
 
       gsap.set(tChooseAccount, { opacity: 0, height: 0 });
       gsap.to(tChooseAccount, { opacity: 1, height: "auto", duration: 1, ease: "power2.out" });
@@ -549,7 +549,7 @@ $(document).ready(async function () {
 
         if (selectedValue === transaction) {
           label.removeClass("bg-deepBlue");
-          tAccountLabel.removeClass("invisible");
+          tAccountLabel.removeClass("hidden");
           gsap.set(tAccountLabel, { opacity: 0, height: 0 });
           gsap.to(tAccountLabel, { opacity: 1, height: "auto", duration: 1, ease: "power2.out" });
           label.addClass("bg-green-600");
@@ -571,7 +571,7 @@ $(document).ready(async function () {
 
       if (selectedValue !== "Transfer") {
         tChooseTarget.hide();
-        tChooseCategory.removeClass("invisible");
+        tChooseCategory.removeClass("hidden");
         gsap.set(tChooseCategory, { opacity: 0, height: 0 });
         gsap.to(tChooseCategory, { opacity: 1, height: "auto", duration: 1, ease: "power2.out" });
       } else {
@@ -579,7 +579,7 @@ $(document).ready(async function () {
       }
 
       if (tDesiredAccount.val() != -1) {
-        tChooseTarget.removeClass("invisible");
+        tChooseTarget.removeClass("hidden");
         gsap.set(tChooseTarget, { opacity: 0, height: 0 });
         gsap.to(tChooseTarget, { opacity: 1, height: "auto", duration: 1, ease: "power2.out" });
         $("#t-main-message").addClass("text-green-600");
@@ -591,14 +591,14 @@ $(document).ready(async function () {
           .removeClass("opacity-25")
           .addClass("opacity-50");
       } else {
-        tChooseTarget.addClass("invisible");
+        tChooseTarget.addClass("hidden");
         $("#t-main-message").removeClass("text-green-400");
       }
     });
 
     //show category when "To account" is selected
     tTargetAccount.on("change", function () {
-      tChooseCategory.removeClass("invisible");
+      tChooseCategory.removeClass("hidden");
       gsap.set(tChooseCategory, { opacity: 0, height: 0 });
       gsap.to(tChooseCategory, { opacity: 1, height: "auto", duration: 1, ease: "power2.out" });
       $("#t-target-message").addClass("text-green-600");
@@ -614,18 +614,18 @@ $(document).ready(async function () {
     // category add svg event handlers
     $("#t-new-category-icon").click(function () {
       const tNewCategoryForm = $("#t-new-category-form");
-      if (tNewCategoryForm.hasClass("invisible")) {
-        tNewCategoryForm.removeClass("invisible");
+      if (tNewCategoryForm.hasClass("hidden")) {
+        tNewCategoryForm.removeClass("hidden");
         gsap.set(tNewCategoryForm, { opacity: 0, height: 0 });
         gsap.to(tNewCategoryForm, { opacity: 1, height: "auto", duration: 1, ease: "power2.out" });
       } else {
-        tNewCategoryForm.addClass("invisible");
+        tNewCategoryForm.addClass("hidden");
       }
     });
 
     //show description when category selected
     tCategoryDropdown.on("change", function () {
-      tAddDescription.removeClass("invisible");
+      tAddDescription.removeClass("hidden");
       gsap.set(tAddDescription, { opacity: 0, height: 0 });
       gsap.to(tAddDescription, { opacity: 1, height: "auto", duration: 1, ease: "power2.out" });
       $("#t-category-message").addClass("text-green-600");
@@ -640,7 +640,7 @@ $(document).ready(async function () {
 
     // show amount section when description is not null
     tAddDescriptionText.on("input", function () {
-      tAmount.removeClass("invisible");
+      tAmount.removeClass("hidden");
       gsap.set(tAmount, { opacity: 0, height: 0 });
       gsap.to(tAmount, { opacity: 1, height: "auto", duration: 1, ease: "power2.out" });
       $("#t-description-message").addClass("text-green-600");
@@ -654,7 +654,7 @@ $(document).ready(async function () {
     });
 
     tAmountInput.on("input", function () {
-      tTransactionButton.removeClass("invisible");
+      tTransactionButton.removeClass("hidden");
       gsap.set(tTransactionButton, { opacity: 0, height: 0 });
       gsap.to(tTransactionButton, { opacity: 1, height: "auto", duration: 1, ease: "power2.out" });
       $("#t-amount-message").addClass("text-green-600");
