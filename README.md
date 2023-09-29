@@ -21,9 +21,9 @@ $ cd frontend
 $ npm run dev
 ```
 ## Images of Complete Website
-<img width="210" alt="login" src="https://github.com/GktgYildiz/Money-Tracking-App/assets/102765970/6d0b5538-3724-4863-9283-9703bd346da6">
-<img width="850" alt="accounts" src="https://github.com/GktgYildiz/Money-Tracking-App/assets/102765970/1ed46486-d7b3-4092-8d87-890fedee21b6">
+<img width="400" alt="login" src="https://github.com/GktgYildiz/Money-Tracking-App/assets/102765970/6d0b5538-3724-4863-9283-9703bd346da6">
 <img width="1000" alt="main" src="https://github.com/GktgYildiz/Money-Tracking-App/assets/102765970/669f7d0c-d53a-42ea-bbd3-7f71c747c026">
+<img width="850" alt="accounts" src="https://github.com/GktgYildiz/Money-Tracking-App/assets/102765970/1ed46486-d7b3-4092-8d87-890fedee21b6">
 
 ## Coding Guideline
 
